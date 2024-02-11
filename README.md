@@ -34,32 +34,32 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 
 ### Dashboard/ Start Screen
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/startify.img|alt=Startify]]]]
+![Startify](https://github.com/b0dee/vimspirational/raw/master/img/startify.img]
 
 ### Git Integration
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/fugitive.img|alt=Fugitive]]]]
+![Fugitive](https://github.com/b0dee/vimspirational/raw/master/img/fugitive.img]
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/fugitive2.img|alt=Fugitive2]]]]
+![Fugitive2](https://github.com/b0dee/vimspirational/raw/master/img/fugitive2.img]
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/fugitive_diff.img|alt=Fugitive_Diff]]]]
+![Fugitive_Diff](https://github.com/b0dee/vimspirational/raw/master/img/fugitive_diff.img]
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/fugitive_commit.img|alt=Fugitive_Commit]]]]
+![Fugitive_Commit](https://github.com/b0dee/vimspirational/raw/master/img/fugitive_commit.img]
 
 ### Language Server Protocol
 ### Linting
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/ale.img|alt=ALE_Linting]]]]
+![ALE_Linting](https://github.com/b0dee/vimspirational/raw/master/img/ale.img]
 
 ### Vim x IDE Tab/windows
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab1.img|alt=Wintabs_Tab1]]]]
+![Wintabs_Tab1](https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab1.img]
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab2.img|alt=Wintabs_Tab2]]]]
+![Wintabs_Tab2](https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab2.img]
 
 ### File Explorer
 
-[[https://github.com/b0dee/vimspirational/raw/master/img/nerdtree.img|alt=NERDTree]]]]
+![NERDTree](https://github.com/b0dee/vimspirational/raw/master/img/nerdtree.img]
 
 ### Quick Fix Navigation
 ### Colour theme
