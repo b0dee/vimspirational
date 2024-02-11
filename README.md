@@ -8,7 +8,8 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 
 ## Features
 
-| Feature | Desc | Plugin Credit |
+| Feature | Description | Plugin Credit |
+| ------- | ----------- | ------------- | 
 | Dashboard/ Start Screen | A nice start screen/dashboard to Vim | [Mhinz - Startify](https://github.com/mhinz/vim-startify) |
 | Git integration | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim), [Xuyuanp - NerdTree Git Plugin](https://github.com/xuyuanp/nerdtree-git-plugin) |
 | Language Server Protocol | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) | 
