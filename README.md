@@ -21,7 +21,7 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 | Language pack | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
 | Rainbow Parenthesis | Recognise where TF you are in nested hell | [Luochen1990 - Rainbow](https://github.com/luochen1990/rainbow) |
 | Multi-line editing | Multi line edits (helpful for [refactoring](https://code.visualstudio.com/docs/editor/refactoring#_rename-symbol) like in VSCode for languages not supported by LSP) | [mg979 - Visual Multi](https://github.com/mg979/vim-visual-multi) |
-| Custom text objects  | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & again[https://github.com/kana/vim-textobj-line] 
+| Custom text objects  | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line) 
 | JSON Object maniuplation | Mappings for working with JSON objects in Vim | [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
 | Large file handling | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile)
 | Repeat | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](tpope/vim-repeat) |
