@@ -75,6 +75,7 @@ Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'npm ci'}     " LSP
 Plug 'dense-analysis/ale' 
 Plug 'zefei/vim-wintabs'
 Plug 'romainl/vim-qf'
+Plug 'bfrg/vim-qf-preview'
 call plug#end()
 
 " ------ Auto Updating Plugins Monthly ------ "
@@ -308,20 +309,54 @@ map <C-W><C-H> :tabprevious<CR>
 map <C-W><C-L> :tabnext<CR>
 
 " Commands 
-map <C-W>c <Plug>(wintabs_close)
+map <C-W>x <Plug>(wintabs_close)
 map <C-W>u <Plug>(wintabs_undo)
 map <C-W>t <Plug>(wintabs_only)
-map <C-W>x <Plug>(wintabs_close_window)
-map <C-W>o <Plug>(wintabs_only_window)
+map <C-W>q <Plug>(wintabs_close_window)
+map <C-W>o <Plug>(wintabs_maximize)
 command! Tabc WintabsCloseVimtab
 command! Tabo WintabsOnlyVimtab
 
+" Toggle quickfix window
 nmap <leader>q <Plug>(qf_qf_toggle)
+
+let g:qfpreview = {
+\   'close':"\<Esc>",
+\   'next':'j',
+\   'previous':'k'
+\}
  
- 
+" Preview quickfix under cursor
+" Remap j and k to hop up and down quickfix list showing previews of newly
+" selected entry
+augroup qfpreview
+    autocmd!
+    autocmd FileType qf nmap <buffer> p <plug>(qf-preview-open)
+    autocmd FileType qf nmap <buffer> <Esc> :cclose<CR>
+    autocmd FileType qf nmap <buffer> q :cclose<CR>
+augroup END
+
+" Auto open quickfix window in c/lwindow mode (auto closes when no more errors
+" in list)
+" The default autocmd (... nested cwindow) does not auto select quickfix window 
+" unlike the actual :cwindow command
+" We can emulate this with the <C-w>b command - can't find any docs on this but 
+" it seems to auto switch to quickfix window. 
+" Follow up with 'p' which previews the quickfix location
+autocmd QuickFixCmdPost [^l]* nested {
+   cwindow 
+   call feedkeys("\<C-w>b", 'in') 
+   call feedkeys("p") 
+}
+
+autocmd QuickFixCmdPost    l* nested {
+   lwindow 
+   call feedkeys("\<C-w>b", 'in')
+   call feedkeys("p") 
+}
+
 " ------ Useful Shortcuts ------ "
 " Pretty Print Shortcut: `gqa`
 " Format JSON: gqaj (j for json)
 " Format SQL : gqas (s for SQL)
-
 
