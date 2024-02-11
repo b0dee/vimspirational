@@ -16,7 +16,7 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 | Linting | Code smells, warnings and errors | [Dense-analysis - ALE](https://github.com/dense-analysis/ale), [OmniSharp](https://github.com/OmniSharp/omnisharp-vim) |
 | Vim x IDE Tab/windows | Make Vim buffers, windows and tabs more logical | [Zefei - WinTabs](https://github.com/zefei/vim-wintabs) |
 | File Explorer | File browsing and management | [Preservim - NERDTree](https://github.com/preservim/nerdtree) | 
-| Quick Fix Navigation | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview) |
+| Quick Fix Navigation | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
 | Colour theme | A very pretty colourscheme - Vimspirational set to 'andromeda' | [Sainnhe - Sonokai](https://github.com/sainnhe/sonokai) |
 | Language pack | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
 | Rainbow Parenthesis | Recognise where TF you are in nested hell | [Luochen1990 - Rainbow](https://github.com/luochen1990/rainbow) |
