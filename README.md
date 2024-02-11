@@ -10,20 +10,20 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 
 | Feature | Description | Plugin Credit |
 | ------- | ----------- | ------------- | 
-| [Dashboard/ Start Screen](###Dashboard/ Start Screen) | A nice start screen/dashboard to Vim | [Mhinz - Startify](https://github.com/mhinz/vim-startify) |
-| [Git integration](###Git integration) | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim), [Xuyuanp - NerdTree Git Plugin](https://github.com/xuyuanp/nerdtree-git-plugin) |
-| [Language Server Protocol](###Language Server Protocol) | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) | 
+| [Dashboard/ Start Screen](###Dashboard-Start-Screen) | A nice start screen/dashboard to Vim | [Mhinz - Startify](https://github.com/mhinz/vim-startify) |
+| [Git integration](###Git-integration) | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim), [Xuyuanp - NerdTree Git Plugin](https://github.com/xuyuanp/nerdtree-git-plugin) |
+| [Language Server Protocol](###Language-Server-Protocol) | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) | 
 | [Linting](###Linting) | Code smells, warnings and errors | [Dense-analysis - ALE](https://github.com/dense-analysis/ale), [OmniSharp](https://github.com/OmniSharp/omnisharp-vim) |
-| [Vim x IDE Tab/windows](###Vim x IDE Tab/windows) | Make Vim buffers, windows and tabs more logical | [Zefei - WinTabs](https://github.com/zefei/vim-wintabs) |
-| [File Explorer](###File Explorer) | File browsing and management | [Preservim - NERDTree](https://github.com/preservim/nerdtree) | 
-| [Quick Fix Navigation](###Quick Fix Navigation) | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
-| [Colour theme](###Colour theme) | A very pretty colourscheme - Vimspirational set to 'andromeda' | [Sainnhe - Sonokai](https://github.com/sainnhe/sonokai) |
-| [Language pack](###Language pack) | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
-| [Rainbow Parenthesis](###Rainbow Parenthesis) | Recognise where TF you are in nested hell | [Luochen1990 - Rainbow](https://github.com/luochen1990/rainbow) |
-| [Multi-line editing](###Multi-line editing) | Multi line edits (helpful for [refactoring](https://code.visualstudio.com/docs/editor/refactoring#_rename-symbol) like in VSCode for languages not supported by LSP) | [mg979 - Visual Multi](https://github.com/mg979/vim-visual-multi) |
-| [Custom text objects ](###Custom text objects ) | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line) 
-| [JSON Object maniuplation](###JSON Object maniuplation) | Mappings for working with JSON objects in Vim | [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
-| [Large file handling](###Large file handling) | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile)
+| [Vim x IDE Tab/windows](###Vim-x-IDE-Tabwindows) | Make Vim buffers, windows and tabs more logical | [Zefei - WinTabs](https://github.com/zefei/vim-wintabs) |
+| [File Explorer](###File-Explorer) | File browsing and management | [Preservim - NERDTree](https://github.com/preservim/nerdtree) | 
+| [Quick Fix Navigation](###Quick-Fix-Navigation) | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
+| [Colour theme](###Colour-theme) | A very pretty colourscheme - Vimspirational set to 'andromeda' | [Sainnhe - Sonokai](https://github.com/sainnhe/sonokai) |
+| [Language pack](###Language-pack) | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
+| [Rainbow Parenthesis](###Rainbow-Parenthesis) | Recognise where TF you are in nested hell | [Luochen1990 - Rainbow](https://github.com/luochen1990/rainbow) |
+| [Multi-line editing](###Multi-line-editing) | Multi line edits (helpful for [refactoring](https://code.visualstudio.com/docs/editor/refactoring#_rename-symbol) like in VSCode for languages not supported by LSP) | [mg979 - Visual Multi](https://github.com/mg979/vim-visual-multi) |
+| [Custom text objects ](###Custom-text-objects ) | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line) 
+| [JSON Object maniuplation](###JSON-Object-maniuplation) | Mappings for working with JSON objects in Vim | [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
+| [Large file handling](###Large-file-handling) | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile)
 | [Repeat](###Repeat) | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](https://github.com/tpope/vim-repeat) |
 | [Surround](###Surround) | Add/Edit/Remove surrounding characters (quotes, tags, paren, brackets) | [TPope - Surround](https://github.com/tpope/vim-surround) |
 | [Sensible](###Sensible) | Sensible Vim mappings the community agree on, likely overwritten some as a lot in there | [TPope - Sensible](https://github.com/tpope/vim-sensible) | 
