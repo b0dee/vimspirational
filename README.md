@@ -24,7 +24,7 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 | Custom text objects  | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line) 
 | JSON Object maniuplation | Mappings for working with JSON objects in Vim | [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
 | Large file handling | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile)
-| Repeat | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](tpope/vim-repeat) |
+| Repeat | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](https://github.com/tpope/vim-repeat) |
 | Surround | Add/Edit/Remove surrounding characters (quotes, tags, paren, brackets) | [TPope - Surround](tpope/vim-surround) |
 | Sensible | Sensible Vim mappings the community agree on, likely overwritten some as a lot in there | [TPope - Sensible](tpope/vim-sensible) | 
 | Commentary | Comment shortcuts for Vim | [TPope - Commentary](tpope/vim-commentary) |
