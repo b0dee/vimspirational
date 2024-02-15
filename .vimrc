@@ -48,14 +48,12 @@ Plug 'tpope/vim-sensible'                           " Sensible vim mappings
 Plug 'tpope/vim-jdaddy'                             " JSON pretty print and object manipulation (gqaj/gqij)
 Plug 'tpope/vim-fugitive'                           " Best git plugin for Vim
 Plug 'tpope/vim-commentary'                         " Commenting shortcuts
-Plug 'preservim/nerdtree'                           " Best Vim file explorer
 Plug 'mhinz/vim-startify'                           " Vim Start Screen
 Plug 'mhinz/vim-signify'                            " Show changed lines in a file managed by a VCS (git)
 Plug 'mg979/vim-visual-multi'                       " Multi line editing shortcuts (ctrl+n,ctrl+arrows,q to skip, Q to remove)
 Plug 'luochen1990/rainbow'                          " Rainbow parenthesis
 Plug 'junegunn/gv.vim'                              " Git commit browser for Vim (dependancy: vim-fugitive)
 Plug 'itchyny/lightline.vim'                        " Vim Status Line
-Plug 'Xuyuanp/nerdtree-git-plugin'                  " Git plugin for NERDTree
 Plug 'MattesGroeger/vim-bookmarks'                  " Vim bookmarking
 Plug 'vim-scripts/ReplaceWithRegister'              " Replace in place with gr<MOTION>
 Plug 'vim-scripts/Auto-Pairs'                       " Auto closing paren, quotes etc.
@@ -73,8 +71,15 @@ Plug 'sainnhe/sonokai'                              " Colorscheme
 Plug 'OmniSharp/omnisharp-vim', {'do':':OmniSharpInstall' } " C# LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'npm ci'}     " LSP
 Plug 'dense-analysis/ale' 
-Plug 'zefei/vim-wintabs'
 Plug 'romainl/vim-qf'
+Plug 'lambdalisue/fern.vim'                         " File explorer 
+Plug 'lambdalisue/fern-hijack.vim'                  " Make fern default FE
+Plug 'lambdalisue/fern-git-status.vim'              " Fern git status 
+Plug 'lambdalisue/fern-mapping-git.vim'             " Fern git integration
+Plug 'hrsh7th/fern-mapping-collapse-or-leave.vim'   " Fix using h key in fern drawer (when at root and all collapsed go up a dir)
+Plug 'puremourning/vimspector'                      " Debugging 
+Plug 'noscript/elevator.vim'                        " Vim scrollbar 
+Plug 'noscript/taberian.vim'
 Plug 'bfrg/vim-qf-preview'
 call plug#end()
 
@@ -226,7 +231,6 @@ let g:rainbow_conf = {
 \ 			'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'], 
 \ 		},
 \ 		'css': 0, 
-\ 		'nerdtree': 0, 
 \ 	},
 \}
 
@@ -246,31 +250,6 @@ let g:lightline = {
                 \     'lineinfo': '%3l:%-2v%<',
                 \   }
                 \ }
-
-" ------ Nerd Tree ------ "
-" Map shortcut
-nnoremap <leader>e :NERDTreeToggle<CR>
-let NERDTreeShowBookmarks=1 
-let NERDTreeShowHidden=1 
-let NERDTreeQuitOnOpen=1
-
-" If another buffer tries to replace NERDTree, put it in the other window, and bring back NERDTree.
-autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'NERD_tree_\d\+' && bufname('%') !~ 'NERD_tree_\d\+' && winnr('$') > 1 |
-    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
-
-" Set git status indicators
-let g:NERDTreeGitStatusIndicatorMapCustom = {
-\  'Modified'  :'M',
-\  'Staged'    :'S',
-\  'Untracked' :'U',
-\  'Renamed'   :'R',
-\  'Unmerged'  :'U',
-\  'Deleted'   :'X',
-\  'Dirty'     :'D',
-\  'Ignored'   :'I',
-\  'Clean'     :'C',
-\  'Unknown'   :'?',
-\ }
 
 " ------ Startify ------ "
 let g:startify_session_dir = '$HOME/vimfiles/session'
@@ -355,8 +334,42 @@ autocmd QuickFixCmdPost    l* nested {
    call feedkeys("p") 
 }
 
+nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
+
+
+augroup Fern
+  autocmd!
+  autocmd FileType fern nmap <buffer><silent><nowait> <C-R> <Plug>(fern-action-reload)
+  autocmd FileType fern nmap <buffer><silent><nowait> r <Plug>(fern-action-rename)
+  autocmd FileType fern nmap <buffer><silent><nowait> m <Plug>(fern-action-move)
+  autocmd FileType fern nmap <buffer><silent><nowait> dd <Plug>(fern-action-remove)
+  autocmd FileType fern nmap <buffer><silent><nowait> a <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent><nowait> i <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent><nowait> i <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent><nowait> C <Plug>(fern-action-enter)
+  autocmd FileType fern nmap <buffer><silent><nowait> h <Plug>(fern-action-collapse-or-leave)
+  autocmd FileType fern nmap <buffer><silent><nowait> cd <Plug>(fern-action-cd)
+  "autocmd FileType fern map <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)fern#smart#leaf("<Plug>(fern-action-collapse)", "<Plug>(fern-action-collapse)", "<Plug>(fern-action-leave)")
+"  autocmd FileType fern nmap <buffer><nowait> h <Plug>(fern-action-collapse)
+"  autocmd FileType fern nmap <buffer><nowait> i <Plug>(fern-action-reveal)
+"  autocmd FileType fern nmap <buffer><nowait> <Return> <Plug>(fern-action-enter)
+augroup END
+
+
+let g:fern#hide_cursor=1
+let g:fern#default_hidden = 1
+let g:fern_git_status#disable_ignored=1
+let g:fern_git_status#disable_untracked=1
+let g:fern_git_status#disable_submodules=1
+
+" If another buffer tries to replace Fern, put it in the other window, and bring back Fern.
+" Need to troubleshoot/fix this
+autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'fern:\/\/.*' && bufname('%') !~ 'fern:\/\/.*' && winnr('$') > 1 |
+    \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
+
 " ------ Useful Shortcuts ------ "
 " Pretty Print Shortcut: `gqa`
 " Format JSON: gqaj (j for json)
 " Format SQL : gqas (s for SQL)
 
+let g:taberian#hide_bufnr = v:true
