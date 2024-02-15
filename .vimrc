@@ -277,24 +277,13 @@ nmap <silent> gqas    vip gqas
 " Remove search highlight 
 nmap <Esc> :noh<CR>
 
-" Win tabs 
-let g:wintabs_autoclose_vimtab = 1
-" Navigate buffer tabgs with ctrl+h/l
-map <C-H> <Plug>(wintabs_previous)
-map <C-L> <Plug>(wintabs_next)
-
 " Navigate window tabs with ctrl+w ctrl+h/l
+" This fits with theme: C-W h,j,k,l move around windows, <C-h/l> navigate
+" 'tabs' via taberian
 map <C-W><C-H> :tabprevious<CR>
 map <C-W><C-L> :tabnext<CR>
 
 " Commands 
-map <C-W>x <Plug>(wintabs_close)
-map <C-W>u <Plug>(wintabs_undo)
-map <C-W>t <Plug>(wintabs_only)
-map <C-W>q <Plug>(wintabs_close_window)
-map <C-W>o <Plug>(wintabs_maximize)
-command! Tabc WintabsCloseVimtab
-command! Tabo WintabsOnlyVimtab
 
 " Toggle quickfix window
 nmap <leader>q <Plug>(qf_qf_toggle)
