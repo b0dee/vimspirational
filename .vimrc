@@ -328,20 +328,17 @@ nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
 
 augroup Fern
   autocmd!
-  autocmd FileType fern nmap <buffer><silent><nowait> <C-R> <Plug>(fern-action-reload)
-  autocmd FileType fern nmap <buffer><silent><nowait> r <Plug>(fern-action-rename)
-  autocmd FileType fern nmap <buffer><silent><nowait> m <Plug>(fern-action-move)
-  autocmd FileType fern nmap <buffer><silent><nowait> dd <Plug>(fern-action-remove)
-  autocmd FileType fern nmap <buffer><silent><nowait> a <Plug>(fern-action-new-path)
-  autocmd FileType fern nmap <buffer><silent><nowait> i <Plug>(fern-action-new-path)
-  autocmd FileType fern nmap <buffer><silent><nowait> i <Plug>(fern-action-new-path)
-  autocmd FileType fern nmap <buffer><silent><nowait> C <Plug>(fern-action-enter)
-  autocmd FileType fern nmap <buffer><silent><nowait> h <Plug>(fern-action-collapse-or-leave)
-  autocmd FileType fern nmap <buffer><silent><nowait> cd <Plug>(fern-action-cd)
-  "autocmd FileType fern map <buffer><nowait> h <Plug>(fern-my-collapse-or-leave)fern#smart#leaf("<Plug>(fern-action-collapse)", "<Plug>(fern-action-collapse)", "<Plug>(fern-action-leave)")
-"  autocmd FileType fern nmap <buffer><nowait> h <Plug>(fern-action-collapse)
-"  autocmd FileType fern nmap <buffer><nowait> i <Plug>(fern-action-reveal)
-"  autocmd FileType fern nmap <buffer><nowait> <Return> <Plug>(fern-action-enter)
+  autocmd FileType fern nmap <buffer><silent> <C-R> <Plug>(fern-action-reload)
+  autocmd FileType fern nmap <buffer><silent> r <Plug>(fern-action-rename)
+  autocmd FileType fern vmap <buffer><silent> r <Plug>(fern-action-rename)
+  autocmd FileType fern nmap <buffer><silent> m <Plug>(fern-action-move)
+  autocmd FileType fern nmap <buffer><silent> dd <Plug>(fern-action-remove)
+  autocmd FileType fern nmap <buffer><silent> a <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent> i <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent> I <Plug>(fern-action-new-path)
+  autocmd FileType fern nmap <buffer><silent> C <Plug>(fern-action-enter)
+  autocmd FileType fern nmap <buffer><silent> h <Plug>(fern-action-collapse-or-leave)
+  autocmd FileType fern nmap <buffer><silent> cd <Plug>(fern-action-cd)
 augroup END
 
 
