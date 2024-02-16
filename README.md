@@ -9,13 +9,13 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 ## Features
 
 | Feature | Description | Plugin Credit |
-| ------- | ----------- | ------------- | 
+| ------- | ----------- | ------------- |
 | [Dashboard/ Start Screen](#dashboard-start-screen) | A nice start screen/dashboard to Vim | [Mhinz - Startify](https://github.com/mhinz/vim-startify) |
 | [Git integration](#Git-integration) | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim), [Xuyuanp - NerdTree Git Plugin](https://github.com/xuyuanp/nerdtree-git-plugin) |
 | [Language Server Protocol](#language-server-protocol) | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) | 
 | [Linting](#Linting) | Code smells, warnings and errors | [Dense-analysis - ALE](https://github.com/dense-analysis/ale), [OmniSharp](https://github.com/OmniSharp/omnisharp-vim) |
 | [Vim x IDE Tab/windows](#vim-x-ide-tabwindows) | Make Vim buffers, windows and tabs more logical | [Zefei - WinTabs](https://github.com/zefei/vim-wintabs) |
-| [File Explorer](#file-explorer) | File browsing and management | [Preservim - NERDTree](https://github.com/preservim/nerdtree) | 
+| [File Explorer](#file-explorer) | File browsing and management | [lambdalisue - Fern](https://github.com/lambdalisue/fern.vim) | 
 | [Quick Fix Navigation](#quick-fix-navigation) | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
 | [Colour theme](#colour-theme) | A very pretty colourscheme - Vimspirational set to 'andromeda' | [Sainnhe - Sonokai](https://github.com/sainnhe/sonokai) |
 | [Language pack](#language-pack) | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
@@ -59,7 +59,6 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 
 ### File Explorer
 
-![NERDTree](https://github.com/b0dee/vimspirational/raw/master/img/nerdtree.png)
 
 ### Quick Fix Navigation
 ### Colour theme
