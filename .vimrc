@@ -282,6 +282,8 @@ nmap <Esc> :noh<CR>
 " 'tabs' via taberian
 map <C-W><C-H> :tabprevious<CR>
 map <C-W><C-L> :tabnext<CR>
+map <C-h>     :TaberianGotoLeftTab<CR>
+map <C-l>     :TaberianGotoRightTab<CR>
 
 " Commands 
 
