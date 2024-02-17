@@ -1,6 +1,7 @@
 " ------ GENERAL SETTINGS ------ "
 syntax on                                              " Enable syntax highlighting
 filetype indent on                                     " Indent based on file type
+" Set leader to space
 let mapleader=" "
 
 set confirm
@@ -33,7 +34,7 @@ set viminfo='100,<9999,s100                            " Store info from no more
 set noshowmode                                         " No need to notify mode changes, we have them visible perma
 set termguicolors                                      " Enable use of all colours
 set textwidth=0
-set guicursor=n-v-c:block-nCursor
+set guicursor=n-v-c:block-Cursor,r-cr:hor30
 highlight SpellBad cterm=bold ctermbg=darkred          " Spelling error highlighting
 let &t_SI = "\e[5 q"                                   " Blinking line in insert
 let g:LargeFile=100                                    " Activate when file is > 100mb
@@ -66,7 +67,7 @@ Plug 'machakann/vim-highlightedyank'                " Highlight what we yanked
 Plug 'mbbill/undotree'                              " Visualise Vim's undo tree - need to do more reading on this one
 Plug 'kana/vim-textobj-user'                        " Create custom text objects. Get better at Vim first, then we can enhance ourselves even further with customisation
 Plug 'kana/vim-textobj-line'                        " Custom line object - believe this is dependant on vim-textobj-user
-Plug 'sheerun/vim-polyglot'                         " Best Vim language pack
+Plug 'sheerun/vim-polyglot'                         " Best Vim language pack (syntax highlighting)
 Plug 'sainnhe/sonokai'                              " Colorscheme
 Plug 'OmniSharp/omnisharp-vim', {'do':':OmniSharpInstall' } " C# LSP
 Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'npm ci'}     " LSP
