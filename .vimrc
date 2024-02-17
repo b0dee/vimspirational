@@ -124,6 +124,7 @@ endif
 " In the single function of the terminal_drawer source code, a cmd argument is
 " made and concatenates to term command. We hijack this to achieve our goal.
 let g:terminal_drawer_shell="++kill=hup"
+let g:terminal_drawer_leader="<M-F1>"
 map <C-'>  :ToggleTerminalDrawer<CR>
 tmap <C-'> <C-W>:ToggleTerminalDrawer<CR>
 
@@ -364,7 +365,7 @@ autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'fern:\/\/.*' && 
 " Format SQL : gqas (s for SQL)
 
 let g:taberian#hide_bufnr = v:true
-map <C-T> :TaberianNewTab<CR>
+map <C-t> :TaberianNewTab<CR>
 
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets=[ '--all', 'netcoredbg', 'vscode-js-debug' ]
