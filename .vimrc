@@ -363,6 +363,7 @@ autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'fern:\/\/.*' && 
 " Format SQL : gqas (s for SQL)
 
 let g:taberian#hide_bufnr = v:true
+map <C-T> :TaberianNewTab<CR>
 
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets=[ '--all', 'netcoredbg', 'vscode-js-debug' ]
