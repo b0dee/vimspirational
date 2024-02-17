@@ -123,6 +123,8 @@ endif
 " In the single function of the terminal_drawer source code, a cmd argument is
 " made and concatenates to term command. We hijack this to achieve our goal.
 let g:terminal_drawer_shell="++kill=hup"
+map <C-'>  :ToggleTerminalDrawer<CR>
+tmap <C-'> <C-W>:ToggleTerminalDrawer<CR>
 
 " ------ ALE ------ "
 "  Let CoC do it's job
