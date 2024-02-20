@@ -3,7 +3,6 @@ syntax on                                              " Enable syntax highlight
 filetype indent on                                     " Indent based on file type
 " Set leader to space
 let mapleader=" "
-
 set confirm
 set pumheight=5                                        " Limit CoC to 5 sugestions
 set signcolumn=yes                                     " Always show sign column 
@@ -362,11 +361,19 @@ autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'fern:\/\/.*' && 
 " Format JSON: gqaj (j for json)
 " Format SQL : gqas (s for SQL)
 
-let g:taberian#hide_bufnr = v:true
-map <C-t> :TaberianNewTab<CR>
-
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets=[ '--all', 'netcoredbg', 'vscode-js-debug' ]
 set noequalalways
 let g:vimspector_base_dir = g:plug_home . '/vimspector'
+if has('win32')
+  let g:vimspector_base_dir = substitute(g:vimspector_base_dir, '/', '\', 'g')
+endif
 let &runtimepath = &runtimepath . ',' . g:vimspector_base_dir
+
+let g:elevator#timeout_msec = 0
+let g:elevator#show_on_enter = v:true
+let g:elevator#highlight = 'PmenuThumb'
+
+" TODO 
+" Add following extensions to Coc:
+" - Angular Language Server
