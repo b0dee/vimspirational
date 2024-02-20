@@ -282,13 +282,10 @@ nmap <silent> gqas    vip gqas
 " Remove search highlight 
 nmap <Esc> :noh<CR>
 
-" Navigate window tabs with ctrl+w ctrl+h/l
-" This fits with theme: C-W h,j,k,l move around windows, <C-h/l> navigate
-" 'tabs' via taberian
-map <C-W><C-H> :tabprevious<CR>
-map <C-W><C-L> :tabnext<CR>
-map <C-h>     :TaberianGotoLeftTab<CR>
-map <C-l>     :TaberianGotoRightTab<CR>
+map <C-T> :tabedit<CR>
+" Navigate tabs with ctrl+w ctrl+h/l
+map <C-H> :tabprevious<CR>
+map <C-L> :tabnext<CR>
 
 " Commands 
 
