@@ -79,9 +79,10 @@ Plug 'lambdalisue/fern-git-status.vim'              " Fern git status
 Plug 'lambdalisue/fern-mapping-git.vim'             " Fern git integration
 Plug 'hrsh7th/fern-mapping-collapse-or-leave.vim'   " Fix using h key in fern drawer (when at root and all collapsed go up a dir)
 Plug 'puremourning/vimspector'                      " Debugging 
-Plug 'noscript/elevator.vim'                        " Vim scrollbar 
-Plug 'noscript/taberian.vim'
+Plug 'b0dee/elevator.vim'                        " Vim scrollbar - using my fork for QOL improvements
 Plug 'bfrg/vim-qf-preview'
+Plug 'tpope/vim-dotenv'                           " Dotenv file integration so can save connection details safely
+Plug 'tpope/vim-obsession'                        " session management
 call plug#end()
 
 " ------ Auto Updating Plugins Monthly ------ "
