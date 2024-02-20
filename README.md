@@ -4,7 +4,7 @@ A custom vimrc
 
 TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See reasoning.
 
-*There are several plugins which add or require 'bloat' but the benefit out weighted the cons for them and I've never noticed a slow down (if I did it would've been removed)
+*There are several plugins which add or require 'bloat' but the benefit out weighed the cons for them and I've never noticed a slow down (if I did it would've been removed)
 
 ## Features
 
