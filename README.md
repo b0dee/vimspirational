@@ -2,10 +2,10 @@
 
 A custom vimrc
 
-TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See
+TL;DR - make vim an IDE. All the bells and whistles, none of the bloat\*. See
 reasoning.
 
-*There are several plugins which add or require 'bloat' but the benefit out
+\*There are several plugins which add or require 'bloat' but the benefit out
 weighted the cons for them and I've never noticed a slow down (if I did it
 would've been removed)
 
@@ -31,6 +31,7 @@ would've been removed)
 | Commentary | Comment shortcuts for Vim | [TPope - Commentary](https://github.com/tpope/vim-commentary) |
 | [Debugging](#debugging) | Debugging within Vim | [puremourning - Vimspector](https://github.com/puremourning/vimspector) |
 | Scrollbar | See where you are in a file | [noscript - Elevator](https://github.com/noscript/elevator.vim) ([with some contributions from myself](https://github.com/elevator.vim/pull/5)) |
+| Database Management | Never have to leave Vim by making it a SQL Management Studio too | [TPope - DadBod](https://github.com/tpope/vim-dadbod), [kristijanhusak - DadBod UI](https://github.com/kristijanhusak/vim-dadbod-ui) |
 
 ## Vimspirational in action
 
