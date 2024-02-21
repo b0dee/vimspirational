@@ -2,33 +2,35 @@
 
 A custom vimrc
 
-TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See reasoning.
+TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See
+reasoning.
 
-*There are several plugins which add or require 'bloat' but the benefit out weighted the cons for them and I've never noticed a slow down (if I did it would've been removed)
+*There are several plugins which add or require 'bloat' but the benefit out
+weighted the cons for them and I've never noticed a slow down (if I did it
+would've been removed)
 
 ## Features
 
 | Feature | Description | Plugin Credit |
 | ------- | ----------- | ------------- |
 | [Dashboard/ Start Screen](#dashboard-start-screen) | A nice start screen/dashboard to Vim | [Mhinz - Startify](https://github.com/mhinz/vim-startify) |
-| [Git integration](#Git-integration) | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim), [Xuyuanp - NerdTree Git Plugin](https://github.com/xuyuanp/nerdtree-git-plugin) |
-| [Language Server Protocol](#language-server-protocol) | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) | 
-| [Linting](#Linting) | Code smells, warnings and errors | [Dense-analysis - ALE](https://github.com/dense-analysis/ale), [OmniSharp](https://github.com/OmniSharp/omnisharp-vim) |
-| [Vim x IDE Tab/windows](#vim-x-ide-tabwindows) | Make Vim buffers, windows and tabs more logical | [Zefei - WinTabs](https://github.com/zefei/vim-wintabs) |
-| [File Explorer](#file-explorer) | File browsing and management | [lambdalisue - Fern](https://github.com/lambdalisue/fern.vim) | 
-| [Quick Fix Navigation](#quick-fix-navigation) | Quickly navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
+| [Git integration](#git-integration) | Various levels of Git integration for Vim - Fugitive is the wrapper powering everything, see each plugin for their purpose | [TPope - Fugitive](https://github.com/tpope/vim-fugitive), [Mhinz - Signify](https://github.com/mhinz/vim-signify), [Junegunn - GV](https://github.com/junegunn/gv.vim) |
+| [Language Server Protocol](#language-server-protocol) | Code completion and source navigation | [Neoclide - CoC](https://github.com/neoclide/coc.nvim) |
+| [Linting](#linting) | Code smells, warnings and errors | [Dense-analysis - ALE](https://github.com/dense-analysis/ale), [OmniSharp](https://github.com/OmniSharp/omnisharp-vim) |
+| [File Explorer](#file-explorer) | File browsing and management | [lambdalisue - Fern](https://github.com/lambdalisue/fern.vim) |
+| Quick Fixes | Quickly preview and navigate compiler warnings/search results (vimgrep) | [Bfrg - QF Preview](https://github.com/bfrg/vim-qf-preview), [Romainl - QuickFix](https://github.com/romainl/vim-qf) |
 | [Colour theme](#colour-theme) | A very pretty colourscheme - Vimspirational set to 'andromeda' | [Sainnhe - Sonokai](https://github.com/sainnhe/sonokai) |
-| [Language pack](#language-pack) | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
+| Language pack | Syntax highlighting | [Sheerun - Polyglot](https://github.com/sheerun/vim-polyglot) |
 | [Rainbow Parenthesis](#rainbow-parenthesis) | Recognise where TF you are in nested hell | [Luochen1990 - Rainbow](https://github.com/luochen1990/rainbow) |
-| [Multi-line Editing](#multi-line-editing) | Multi line edits (helpful for [refactoring](https://code.visualstudio.com/docs/editor/refactoring#_rename-symbol) like in VSCode for languages not supported by LSP) | [mg979 - Visual Multi](https://github.com/mg979/vim-visual-multi) |
-| [Custom text objects ](#custom-text-objects ) | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line) 
-| [JSON Object maniuplation](#json-object-maniuplation) | Mappings for working with JSON objects in Vim | [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
-| [Large file handling](#large-file-handling) | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile)
-| [Repeat](#repeat) | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](https://github.com/tpope/vim-repeat) |
-| [Surround](#surround) | Add/Edit/Remove surrounding characters (quotes, tags, paren, brackets) | [TPope - Surround](https://github.com/tpope/vim-surround) |
-| [Sensible](#sensible) | Sensible Vim mappings the community agree on, likely overwritten some as a lot in there | [TPope - Sensible](https://github.com/tpope/vim-sensible) | 
-| [Commentary](#commentary) | Comment shortcuts for Vim | [TPope - Commentary](https://github.com/tpope/vim-commentary) |
-
+| Multi-line Editing | Multi line edits (helpful for [refactoring](https://code.visualstudio.com/docs/editor/refactoring#_rename-symbol) like in VSCode for languages not supported by LSP) | [mg979 - Visual Multi](https://github.com/mg979/vim-visual-multi) |
+| Custom text objects | Create custom text objects, dependency of other textobject plugins | [kana - Textobj-User](https://github.com/kana/vim-textobj-user) & [again](https://github.com/kana/vim-textobj-line), [TPope - JDaddy](https://github.com/tpope/vim-jdaddy) |
+| Large file handling | Settings to improve editing large files | [Charles Campbell - LargeFile](https://github.com/vim-scripts/LargeFile) |
+| Repeat | Repeat actions made with plugins (Vimify plugins) | [TPope - Repeat](https://github.com/tpope/vim-repeat) |
+| Surround | Add/Edit/Remove surrounding characters (quotes, tags, paren, brackets) | [TPope - Surround](https://github.com/tpope/vim-surround) |
+| Sensible | Sensible Vim mappings the community agree on, likely overwritten some as a lot in there | [TPope - Sensible](https://github.com/tpope/vim-sensible) |
+| Commentary | Comment shortcuts for Vim | [TPope - Commentary](https://github.com/tpope/vim-commentary) |
+| [Debugging](#debugging) | Debugging within Vim | [puremourning - Vimspector](https://github.com/puremourning/vimspector) |
+| Scrollbar | See where you are in a file | [noscript - Elevator](https://github.com/noscript/elevator.vim) ([with some contributions from myself](https://github.com/elevator.vim/pull/5)) |
 
 ## Vimspirational in action
 
@@ -47,54 +49,48 @@ TL;DR - make vim an IDE. All the bells and whistles, none of the bloat*. See rea
 ![Fugitive_Commit](https://github.com/b0dee/vimspirational/raw/master/img/fugitive_commit.png)
 
 ### Language Server Protocol
+
+Best seen using it. Open a file and use 'tab' key to start completion while
+typing a word. Use 'gi' on a method to go to implementation, 'gd' to go to
+definition, '<leader>sr' to show references.
+
 ### Linting
 
 ![ALE_Linting](https://github.com/b0dee/vimspirational/raw/master/img/ale.png)
 
-### Vim x IDE Tab/windows
-
-![Wintabs_Tab1](https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab1.png)
-
-![Wintabs_Tab2](https://github.com/b0dee/vimspirational/raw/master/img/wintabs_tab2.png)
-
 ### File Explorer
 
+![Fern](https://github.com/b0dee/vimspirational/raw/master/img/fern.png)
 
-### Quick Fix Navigation
 ### Colour theme
-### Language pack
-### Rainbow Parenthesis
-### Multi-line editing
-### Custom text objects 
-### JSON Object maniuplation
-### Large file handling
-### Repeat
-### Surround
-### Sensible
-### Commentary
+
+![Theme_Markdown](https://github.com/b0dee/vimspirational/raw/master/img/theme_markdown.png)
+
+![Theme_Source_Code](https://github.com/b0dee/vimspirational/raw/master/img/theme_src_code.png)
+
+### Debugging
+
+![Vimspector](https://github.com/b0dee/vimspirational/raw/master/img/vimspector.png)
 
 ## Reasoning
 
-I am no Vim guru but am proficient in small code bases. NVChad recently popped
-up onto my radar and I used NeoVim quite happily, briefly. 
+I tried VSCode with Vim mappings. Then tried to run a global command.
+DENIED. (Went back to Vim)
+
+NVChad recently popped up onto my radar and reignited my passion for
+development, the good parts of VSCode with no bloat/limitations??
+Or so I thought, using NeoVim quite happily - but short lived...
 
 It crashed on me trying to run a :g command on a ~500mb file. Unacceptable.
-Vim has performed this for me on larger files before. 
+Vim has performed this for me on larger files before.
 
 But NVChad really impressed me with look and feel so I wanted to try replicate
-that in OG Vim. Think of it as VimChad, NVChad's vimscript cousin
+that in OG Vim. Think of it as VimChad, NVChad's vimscript cousin.
 
-Not all functionality has or will be ported, a lot relies heavily on plugins -
-Vim can do most of it in-built, but plugins provide a better experience, i.e.
-LSP completion
+I've moved over functionality I deemed essential to modern day development ecosystems
+(Git integration, LSP, completion, linting, debugging, project tree for structure
+viewing - not navigation!).
 
 Also has my own personal preferences/ customisation
 
-Open to PRs 
-
-
-
-
-
-
-
+*NOT* open to PRs. Clone/fork and make it your own.
