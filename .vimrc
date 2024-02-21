@@ -82,6 +82,8 @@ Plug 'b0dee/elevator.vim'                        " Vim scrollbar - using my fork
 Plug 'bfrg/vim-qf-preview'
 Plug 'tpope/vim-dotenv'                           " Dotenv file integration so can save connection details safely
 Plug 'tpope/vim-obsession'                        " session management
+Plug 'tpope/vim-dadbod'
+Plug 'kristijanhusak/vim-dadbod-ui'
 call plug#end()
 
 " ------ Auto Updating Plugins Monthly ------ "
@@ -377,3 +379,6 @@ let g:elevator#highlight = 'PmenuThumb'
 " TODO 
 " Add following extensions to Coc:
 " - Angular Language Server
+"
+
+autocmd FileType sql map <F5> <Plug>(DBUI_ExecuteQuery)<CR>
