@@ -72,6 +72,58 @@ definition, '<leader>sr' to show references.
 
 ![Vimspector](https://github.com/b0dee/vimspirational/raw/master/img/vimspector.png)
 
+#### Vimspector Debugging Notes
+
+For C Sharp programs, it uses netcoredbg. This requires you to point the program
+to the dll of the project being run, and needs to be built first (make sure you
+build it for Debug)
+
+Example CSharp .vimspector.json
+```json
+{
+  "configurations": {
+    "launch - netcoredbg": {
+      "adapter": "netcoredbg",
+      "configuration": {
+        "request": "launch",
+        "program": "${workspaceRoot}/bin/Debug/net7.0/win7-x64/<project>.dll",
+        "args": [],
+        "stopAtEntry": false
+      },
+      "breakpoints": {
+        "exception": {
+          "user-unhandled": "",
+          "all": ""
+        }
+      }
+    }
+  }
+}
+```
+
+Get NextJS working with vscode-js-debug adapter using the following config:
+
+```json
+{
+  "configurations": {
+    "run - next-js-debug": {
+      "adapter": "js-debug",
+      "configuration": {
+        "request": "launch",
+        "program": "./node_modules/next/dist/bin/next",
+        "timeout": 100000,
+        "resolveSourceMapLocations": [
+          "${workspaceFolder}/**",
+          "!**/node_modules/**"
+        ],
+        "cwd": "${workspaceRoot}",
+        "stopOnEntry": false
+      }
+    }
+  }
+}
+```
+
 ## Reasoning
 
 I tried VSCode with Vim mappings. Then tried to run a global command.
