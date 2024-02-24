@@ -392,6 +392,12 @@ function! ExecuteOrDebug()
       execute "normal \<Plug>(DBUI_ExecuteQuery)"
     endif
   else 
+    if &filetype == "cs"
+      let output = system("dotnet build -v quiet --no-restore --no-dependencies --nologo -c Debug") 
+      for l:line in split(output,'\n')
+        echom l:line
+      endfor
+    endif
     execute "normal \<Plug>VimspectorContinue"
   endif
 endfunction
@@ -400,5 +406,6 @@ autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
 autocmd FileType * imap <silent><F5> :call ExecuteOrDebug()<CR>
 autocmd FileType dbout set nowrap
 
+nmap <silent><esc> :noh<CR>
 
 
