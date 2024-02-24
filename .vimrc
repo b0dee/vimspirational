@@ -383,7 +383,12 @@ let g:elevator#highlight = 'PmenuThumb'
 " TODO 
 " Add following extensions to Coc:
 " - Angular Language Server
-"
+
+function! InitVimspector() 
+  let directories = 
+endfunction
+
+
 function! ExecuteOrDebug()
   if &filetype == "sql" 
     if mode()  == 'v'
@@ -393,7 +398,7 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
-      let output = system("dotnet build -v quiet --no-restore --no-dependencies --nologo -c Debug") 
+      let output = system("dotnet build -v quiet --nologo -c Debug") 
       for l:line in split(output,'\n')
         echom l:line
       endfor
