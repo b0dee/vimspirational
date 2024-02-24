@@ -127,8 +127,8 @@ endif
 " made and concatenates to term command. We hijack this to achieve our goal.
 let g:terminal_drawer_shell="++kill=hup"
 let g:terminal_drawer_leader="<M-F1>"
-map <C-'>  :ToggleTerminalDrawer<CR>
-tmap <C-'> <C-W>:ToggleTerminalDrawer<CR>
+map <silent><C-'>  :ToggleTerminalDrawer<CR>
+tmap <silent><C-'> <C-W>:ToggleTerminalDrawer<CR>
 
 " ------ ALE ------ "
 "  Let CoC do it's job
@@ -183,22 +183,21 @@ autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
 autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
 
 " Use K to show documentation in preview window
-nnoremap K :call ShowDocumentation()<CR>
-nnoremap <leader>K :call feedkeys('K', 'in')<CR>
+nnoremap <silent>K :call ShowDocumentation()<CR>
 
 function! ShowDocumentation()
-  if CocAction('hasProvider', 'hover')
-    call CocActionAsync('doHover')
+  if coc#rpc#ready() && CocAction('hasProvider', 'hover') && !coc#float#has_float()
+    silent call CocActionAsync('doHover')
   else
-    call feedkeys('K', 'in')
+    silent call feedkeys('K', 'in')
   endif
 endfunction
 
 " Symbol renaming
-nmap <leader>rn <Plug>(coc-rename)
+nmap <silent><leader>rn <Plug>(coc-rename)
 
 " Show references 
-nmap <leader>sr  <Plug>(coc-references)
+nmap <silent><leader>sr  <Plug>(coc-references)
 
 " Fix comments in json files
 autocmd FileType json syntax match Comment +\/\/.\+$+
@@ -245,17 +244,25 @@ let g:unite_force_overwrite_statusline = 0
 let g:vimfiler_force_overwrite_statusline = 0
 let g:vimshell_force_overwrite_statusline = 0
 let g:lightline = {
-                \   'active': {
-                \     'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'absolutepath', 'modified' ] ],
-                \     'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat', 'lineinfo', ] ], 
-                \   },
-                \   'component_function': {
-                \     'gitbranch':'FugitiveHead',
-                \   },
-                \   'component': {
-                \     'lineinfo': '%3l:%-2v%<',
-                \   }
-                \ }
+                 \  'colorscheme': 'sonokai',
+                 \  'active': {
+                 \    'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'pwd', 'relativepath', 'modified' ] ],
+                 \    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat', 'lineinfo', ] ], 
+                 \  },
+                 \  'component_function': {
+                 \    'gitbranch':'FugitiveHead',
+                 \    'pwd': 'getcwd'
+                 \  },
+                 \  'component': {
+                 \    'lineinfo': '%3l:%-2v%<',
+                 \  },
+                 \  'tabline': {
+                 \    'left': [ [ 'tabs' ] ],
+                 \    'right': [ [ ] ],
+                 \    'active': [ 'tabnum', 'filename', 'modified' ],
+                 \    'inactive': [ 'tabnum', 'filename', 'modified' ]
+                 \  }
+                 \ }
 
 " ------ Startify ------ "
 let g:startify_session_dir = '$HOME/vimfiles/session'
@@ -273,25 +280,22 @@ let g:sqlutil_keyword_case = '\U'           " Auto capitalise keywords
 
 " ------ Mappings ------ "
 " Remap CTRL + '/' to comment line/selection
-vmap <C-/> gc
-nmap <C-/> gcc
+vmap <silent><C-/> gc
+nmap <silent><C-/> gcc
 
 " Format SQL
 vmap <silent> gqas    :SQLUFormatter<CR>
 nmap <silent> gqas    vip gqas
 
-" Remove search highlight 
-nmap <Esc> :noh<CR>
-
-map <C-T> :tabedit<CR>
+map <silent><C-T> :tabedit<CR>
 " Navigate tabs with ctrl+w ctrl+h/l
-map <C-H> :tabprevious<CR>
-map <C-L> :tabnext<CR>
+map <silent><C-H> :tabprevious<CR>
+map <silent><C-L> :tabnext<CR>
 
 " Commands 
 
 " Toggle quickfix window
-nmap <leader>q <Plug>(qf_qf_toggle)
+nmap <silent><leader>q <Plug>(qf_qf_toggle)
 
 let g:qfpreview = {
 \   'close':"\<Esc>",
@@ -304,9 +308,9 @@ let g:qfpreview = {
 " selected entry
 augroup qfpreview
     autocmd!
-    autocmd FileType qf nmap <buffer> p <plug>(qf-preview-open)
-    autocmd FileType qf nmap <buffer> <Esc> :cclose<CR>
-    autocmd FileType qf nmap <buffer> q :cclose<CR>
+    autocmd FileType qf nmap <silent><buffer> p <plug>(qf-preview-open)
+    autocmd FileType qf nmap <silent><buffer> <Esc> :cclose<CR>
+    autocmd FileType qf nmap <silent><buffer> q :cclose<CR>
 augroup END
 
 " Auto open quickfix window in c/lwindow mode (auto closes when no more errors
@@ -380,5 +384,21 @@ let g:elevator#highlight = 'PmenuThumb'
 " Add following extensions to Coc:
 " - Angular Language Server
 "
+function! ExecuteOrDebug()
+  if &filetype == "sql" 
+    if mode()  == 'v'
+      execute "visual \<Plug>(DBUI_ExecuteQuery)"
+    else
+      execute "normal \<Plug>(DBUI_ExecuteQuery)"
+    endif
+  else 
+    execute "normal \<Plug>VimspectorContinue"
+  endif
+endfunction
 
-autocmd FileType sql map <F5> <Plug>(DBUI_ExecuteQuery)<CR>
+autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
+autocmd FileType * imap <silent><F5> :call ExecuteOrDebug()<CR>
+autocmd FileType dbout set nowrap
+
+
+
