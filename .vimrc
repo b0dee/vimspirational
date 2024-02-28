@@ -412,11 +412,6 @@ let g:elevator#highlight = 'PmenuThumb'
 " Add following extensions to Coc:
 " - Angular Language Server
 
-function! InitVimspector() 
-  let directories = 
-endfunction
-
-
 function! ExecuteOrDebug()
   if &filetype == "sql" 
     if mode()  == 'v'
