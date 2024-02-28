@@ -163,16 +163,10 @@ let g:OmniSharp_coc_snippet = 1
 
 " ------ COC ------ "
 " ------ Extensions ------ "
-let g:coc_user_config = {}
-" Make tab auto select and fill the first entry
+let g:coc_user_config = { }
 let g:coc_user_config['suggest.enablePreselect'] = v:false 
 let g:coc_user_config['suggest.noselect'] = v:true
-" Forward diagnostics to ALE to be displayed
 let g:coc_user_config['diagnostic.displayByAle'] = v:true
-" Disables powershell terminal from launching whenever you enter a ps1/powershell file 
-"let g:coc_user_config['powershell.integratedConsole.showOnStartup'] = v:true
-
-" Enable semantic tokens
 let g:coc_user_config['semanticTokens.enable'] = v:true
 let g:coc_user_config['semanticTokens.filetypes'] = [ "c", "python", "ts" ]
 let g:coc_user_config['javascript.suggest.autoImports'] = v:true
