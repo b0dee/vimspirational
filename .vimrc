@@ -92,6 +92,7 @@ Plug 'tpope/vim-dotenv'                           " Dotenv file integration so c
 Plug 'tpope/vim-obsession'                        " session management
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'idanarye/vim-merginal'
 call plug#end()
 
 " ################################
