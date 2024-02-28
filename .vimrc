@@ -208,6 +208,7 @@ autocmd FileType * nmap <silent> gi <Plug>(coc-implementation)
 " Overwrite for C# files
 autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
 autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> gpi <Plug>(omnisharp_preview_implementations)
 
 " Use K to show documentation in preview window
 nnoremap <silent>K :call ShowDocumentation()<CR>
