@@ -18,7 +18,8 @@ set number relativenumber                              " Line Numbering
 set wrap linebreak breakindent                         " Line wrapping - purely UI (not saved to file)
 set showbreak=+++\                                     " When text is wrapped, prefix with '+++ ' to signify wrapping
 set wildmode=list:full,full                        " Only affects command mode completion as CoC handles all other completions. Makes command mode completion work how we've configured CoC (tab auto select first option and fill)
-set completeopt=menu,menuone,popup,noselect,noinsert " Auto-complete menu display settings
+set noruler
+set completeopt=menuone,popup,noselect,noinsert " Auto-complete menu display settings
 set complete-=i                                        " Stop Vim looking through header files for c lookups
 set wildignore+=*.docx,*.jpg,*.png,*.gif,*.pdf         " Add to ignore list when searching for files/ content within files
 set wildignore+=*.pyc,*.exe,*.flv,*.img,*.xlsx         " Above continued
