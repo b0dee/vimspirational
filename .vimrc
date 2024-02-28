@@ -1,4 +1,8 @@
-" ------ GENERAL SETTINGS ------ "
+" ################################
+" #                              #
+" #      GENERAL SETTINGS        #
+" #                              #
+" ################################
 syntax on                                              " Enable syntax highlighting
 filetype indent on                                     " Indent based on file type
 " Set leader to space
@@ -14,7 +18,8 @@ set number relativenumber                              " Line Numbering
 set wrap linebreak breakindent                         " Line wrapping - purely UI (not saved to file)
 set showbreak=+++\                                     " When text is wrapped, prefix with '+++ ' to signify wrapping
 set wildmode=list:full,full                        " Only affects command mode completion as CoC handles all other completions. Makes command mode completion work how we've configured CoC (tab auto select first option and fill)
-set completeopt=menu,menuone,popup,noselect,noinsert " Auto-complete menu display settings
+set noruler
+set completeopt=menuone,popup,noselect,noinsert " Auto-complete menu display settings
 set complete-=i                                        " Stop Vim looking through header files for c lookups
 set wildignore+=*.docx,*.jpg,*.png,*.gif,*.pdf         " Add to ignore list when searching for files/ content within files
 set wildignore+=*.pyc,*.exe,*.flv,*.img,*.xlsx         " Above continued
@@ -39,7 +44,11 @@ let &t_SI = "\e[5 q"                                   " Blinking line in insert
 let g:LargeFile=100                                    " Activate when file is > 100mb
 set shiftround
 
-" ------ PLUGINS ------ "
+" ################################
+" #                              #
+" #           PLUGINS            #
+" #                              #
+" ################################
 call plug#begin()
 Plug 'vim-scripts/LargeFile'                        " Disables some background things Vim does when opening large files
 Plug 'tpope/vim-repeat'                             " Repeat actions made by plugins with `.`
@@ -84,7 +93,14 @@ Plug 'tpope/vim-dotenv'                           " Dotenv file integration so c
 Plug 'tpope/vim-obsession'                        " session management
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
+Plug 'idanarye/vim-merginal'
 call plug#end()
+
+" ################################
+" #                              #
+" #       Vim Maintenance        #
+" #                              #
+" ################################
 
 " ------ Auto Updating Plugins Monthly ------ "
 function! OnVimEnter() abort
@@ -117,6 +133,13 @@ endif
 
 " ------ Plugin Customisations ------ "
 
+" ################################
+" #                              #
+" #    Plugin Customisation      #
+" #                              #
+" ################################
+
+
 " ------ TermToggle ------ "
 " This is a hack to configure the terminal to kill the terminal buffer if it
 " is sent a quit command:
@@ -134,6 +157,9 @@ tmap <silent><C-'> <C-W>:ToggleTerminalDrawer<CR>
 "  Let CoC do it's job
 let g:ale_disable_lsp = 1
 let g:ale_floating_preview = 1
+let g:ale_linters = { 'cs': ['OmniSharp']  }
+
+let g:OmniSharp_coc_snippet = 1
 
 " ------ COC ------ "
 " ------ Extensions ------ "
@@ -143,6 +169,8 @@ let g:coc_user_config['suggest.noselect'] = v:true
 let g:coc_user_config['diagnostic.displayByAle'] = v:true
 let g:coc_user_config['semanticTokens.enable'] = v:true
 let g:coc_user_config['semanticTokens.filetypes'] = [ "c", "python", "ts" ]
+let g:coc_user_config['javascript.suggest.autoImports'] = v:true
+let g:coc_user_config['typescript.suggest.autoImports'] = v:true
 
 
 let g:coc_global_extensions=[ 'coc-angular', 'coc-clangd', 'coc-css', 'coc-highlight', 'coc-html', 'coc-json', 'coc-markdownlint', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-tsserver', 'coc-vimlsp', 'coc-xml' ]
@@ -151,7 +179,7 @@ noremap <silent><F2> <Plug>(coc-rename)
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
+" no select by `"suggest.noselect": v:true` in your configuration file
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
@@ -177,6 +205,7 @@ autocmd FileType * nmap <silent> gi <Plug>(coc-implementation)
 " Overwrite for C# files
 autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
 autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> gpi <Plug>(omnisharp_preview_implementations)
 
 " Use K to show documentation in preview window
 nnoremap <silent>K :call ShowDocumentation()<CR>
@@ -379,7 +408,7 @@ let g:elevator#highlight = 'PmenuThumb'
 " TODO 
 " Add following extensions to Coc:
 " - Angular Language Server
-"
+
 function! ExecuteOrDebug()
   if &filetype == "sql" 
     if mode()  == 'v'
@@ -389,7 +418,7 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
-      let output = system("dotnet build -v quiet --no-restore --no-dependencies --nologo -c Debug") 
+      let output = system("dotnet build -v quiet --nologo -c Debug") 
       for l:line in split(output,'\n')
         echom l:line
       endfor
@@ -404,4 +433,7 @@ autocmd FileType dbout set nowrap
 
 nmap <silent><esc> :noh<CR>
 
+
+let g:merginal_resizeWindowToBranchLen = 1
+let g:merginal_showCommands = 0
 
