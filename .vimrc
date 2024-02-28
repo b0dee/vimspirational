@@ -147,6 +147,8 @@ let g:coc_user_config['semanticTokens.filetypes'] = [ "c", "python", "ts" ]
 
 let g:coc_global_extensions=[ 'coc-angular', 'coc-clangd', 'coc-css', 'coc-highlight', 'coc-html', 'coc-json', 'coc-markdownlint', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-tsserver', 'coc-vimlsp', 'coc-xml' ]
 
+noremap <silent><F2> <Plug>(coc-rename)
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": true` in your configuration file
