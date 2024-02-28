@@ -156,6 +156,9 @@ tmap <silent><C-'> <C-W>:ToggleTerminalDrawer<CR>
 "  Let CoC do it's job
 let g:ale_disable_lsp = 1
 let g:ale_floating_preview = 1
+let g:ale_linters = { 'cs': ['OmniSharp']  }
+
+let g:OmniSharp_coc_snippet = 1
 
 " ------ COC ------ "
 " ------ Extensions ------ "
