@@ -174,13 +174,15 @@ let g:coc_user_config['diagnostic.displayByAle'] = v:true
 " Enable semantic tokens
 let g:coc_user_config['semanticTokens.enable'] = v:true
 let g:coc_user_config['semanticTokens.filetypes'] = [ "c", "python", "ts" ]
+let g:coc_user_config['javascript.suggest.autoImports'] = v:true
+let g:coc_user_config['typescript.suggest.autoImports'] = v:true
 
 
 let g:coc_global_extensions=[ 'coc-angular', 'coc-clangd', 'coc-css', 'coc-highlight', 'coc-html', 'coc-json', 'coc-markdownlint', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-tsserver', 'coc-vimlsp', 'coc-xml' ]
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": true` in your configuration file
+" no select by `"suggest.noselect": v:true` in your configuration file
 " NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
 " other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
