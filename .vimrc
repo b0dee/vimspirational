@@ -1,4 +1,8 @@
-" ------ GENERAL SETTINGS ------ "
+" ################################
+" #                              #
+" #      GENERAL SETTINGS        #
+" #                              #
+" ################################
 syntax on                                              " Enable syntax highlighting
 filetype indent on                                     " Indent based on file type
 " Set leader to space
@@ -39,7 +43,11 @@ let &t_SI = "\e[5 q"                                   " Blinking line in insert
 let g:LargeFile=100                                    " Activate when file is > 100mb
 set shiftround
 
-" ------ PLUGINS ------ "
+" ################################
+" #                              #
+" #           PLUGINS            #
+" #                              #
+" ################################
 call plug#begin()
 Plug 'vim-scripts/LargeFile'                        " Disables some background things Vim does when opening large files
 Plug 'tpope/vim-repeat'                             " Repeat actions made by plugins with `.`
@@ -86,6 +94,12 @@ Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 call plug#end()
 
+" ################################
+" #                              #
+" #       Vim Maintenance        #
+" #                              #
+" ################################
+
 " ------ Auto Updating Plugins Monthly ------ "
 function! OnVimEnter() abort
   " Run PlugUpdate every month automatically when entering Vim.
@@ -116,6 +130,13 @@ if !has('gui_running')
 endif
 
 " ------ Plugin Customisations ------ "
+
+" ################################
+" #                              #
+" #    Plugin Customisation      #
+" #                              #
+" ################################
+
 
 " ------ TermToggle ------ "
 " This is a hack to configure the terminal to kill the terminal buffer if it
