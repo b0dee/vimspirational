@@ -417,9 +417,10 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
+      echow "Building project"
       let output = system("dotnet build -v quiet --nologo -c Debug") 
       for l:line in split(output,'\n')
-        echom l:line
+        echow l:line
       endfor
     endif
     execute "normal \<Plug>VimspectorContinue"
@@ -427,11 +428,10 @@ function! ExecuteOrDebug()
 endfunction
 
 autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
-autocmd FileType * imap <silent><F5> :call ExecuteOrDebug()<CR>
+autocmd FileType * imap <silent><F5> <Esc>:call ExecuteOrDebug()<CR>
 autocmd FileType dbout set nowrap
 
 nmap <silent><esc> :noh<CR>
-
 
 let g:merginal_resizeWindowToBranchLen = 1
 let g:merginal_showCommands = 0
