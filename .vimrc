@@ -4,6 +4,7 @@
 " #                              #
 " ################################
 syntax on                                              " Enable syntax highlighting
+set updatetime=100
 filetype indent on                                     " Indent based on file type
 " Set leader to space
 let mapleader=" "
@@ -58,7 +59,7 @@ Plug 'tpope/vim-jdaddy'                             " JSON pretty print and obje
 Plug 'tpope/vim-fugitive'                           " Best git plugin for Vim
 Plug 'tpope/vim-commentary'                         " Commenting shortcuts
 Plug 'mhinz/vim-startify'                           " Vim Start Screen
-Plug 'mhinz/vim-signify'                            " Show changed lines in a file managed by a VCS (git)
+Plug 'airblade/vim-gitgutter'
 Plug 'mg979/vim-visual-multi'                       " Multi line editing shortcuts (ctrl+n,ctrl+arrows,q to skip, Q to remove)
 Plug 'luochen1990/rainbow'                          " Rainbow parenthesis
 Plug 'junegunn/gv.vim'                              " Git commit browser for Vim (dependancy: vim-fugitive)
@@ -435,3 +436,7 @@ nmap <silent><esc> :noh<CR>
 let g:merginal_resizeWindowToBranchLen = 1
 let g:merginal_showCommands = 0
 
+cnoreabbrev ShowChanges GitGutterLineHighlightsEnable
+cnoreabbrev HideChanges GitGutterLineHighlightsDisable
+cnoreabbrev ToggleChanges GitGutterLineHighlightsToggle
+cnoreabbrev Stage GitGutterPreviewHunk
