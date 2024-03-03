@@ -440,3 +440,6 @@ cnoreabbrev ShowChanges GitGutterLineHighlightsEnable
 cnoreabbrev HideChanges GitGutterLineHighlightsDisable
 cnoreabbrev ToggleChanges GitGutterLineHighlightsToggle
 cnoreabbrev Stage GitGutterPreviewHunk
+" Make ctrl + backspace work like normal in insert and command mode
+inoremap <C-BS> <C-W>
+cnoremap <C-BS> <C-W>
