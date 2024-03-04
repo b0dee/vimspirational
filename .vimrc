@@ -4,6 +4,7 @@
 " #                              #
 " ################################
 syntax on                                              " Enable syntax highlighting
+set updatetime=100
 filetype indent on                                     " Indent based on file type
 " Set leader to space
 let mapleader=" "
@@ -58,7 +59,7 @@ Plug 'tpope/vim-jdaddy'                             " JSON pretty print and obje
 Plug 'tpope/vim-fugitive'                           " Best git plugin for Vim
 Plug 'tpope/vim-commentary'                         " Commenting shortcuts
 Plug 'mhinz/vim-startify'                           " Vim Start Screen
-Plug 'mhinz/vim-signify'                            " Show changed lines in a file managed by a VCS (git)
+Plug 'airblade/vim-gitgutter'
 Plug 'mg979/vim-visual-multi'                       " Multi line editing shortcuts (ctrl+n,ctrl+arrows,q to skip, Q to remove)
 Plug 'luochen1990/rainbow'                          " Rainbow parenthesis
 Plug 'junegunn/gv.vim'                              " Git commit browser for Vim (dependancy: vim-fugitive)
@@ -68,7 +69,6 @@ Plug 'vim-scripts/ReplaceWithRegister'              " Replace in place with gr<M
 Plug 'vim-scripts/Auto-Pairs'                       " Auto closing paren, quotes etc.
 Plug 'vim-scripts/Align'                            " Dependency of SQLUtilities
 Plug 'vim-scripts/SQLUtilities'                     " SQL Formatting (does other stuff, but not useful to us )
-Plug 'iaalm/terminal-drawer.vim'                    " Terminal shortcut helper (auto-open, auto-focus, auto-close)
 Plug 'markonm/traces.vim'                           " Preview substitutions
 Plug 'itchyny/vim-cursorword'                       " Underline words that match word under cursor 
 Plug 'machakann/vim-highlightedyank'                " Highlight what we yanked
@@ -94,6 +94,10 @@ Plug 'tpope/vim-obsession'                        " session management
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'idanarye/vim-merginal'
+Plug 'gcmt/taboo.vim'
+Plug 'romainl/vim-cool'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-endwise'
 call plug#end()
 
 " ################################
@@ -423,9 +427,10 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
+      echow "Building project"
       let output = system("dotnet build -v quiet --nologo -c Debug") 
       for l:line in split(output,'\n')
-        echom l:line
+        echow l:line
       endfor
     endif
     execute "normal \<Plug>VimspectorContinue"
@@ -433,12 +438,18 @@ function! ExecuteOrDebug()
 endfunction
 
 autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
-autocmd FileType * imap <silent><F5> :call ExecuteOrDebug()<CR>
+autocmd FileType * imap <silent><F5> <Esc>:call ExecuteOrDebug()<CR>
 autocmd FileType dbout set nowrap
 
 nmap <silent><esc> :noh<CR>
 
-
 let g:merginal_resizeWindowToBranchLen = 1
 let g:merginal_showCommands = 0
 
+cnoreabbrev ShowChanges GitGutterLineHighlightsEnable
+cnoreabbrev HideChanges GitGutterLineHighlightsDisable
+cnoreabbrev ToggleChanges GitGutterLineHighlightsToggle
+cnoreabbrev Stage GitGutterPreviewHunk
+" Make ctrl + backspace work like normal in insert and command mode
+inoremap <C-BS> <C-W>
+cnoremap <C-BS> <C-W>
