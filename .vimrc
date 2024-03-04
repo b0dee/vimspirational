@@ -69,7 +69,6 @@ Plug 'vim-scripts/ReplaceWithRegister'              " Replace in place with gr<M
 Plug 'vim-scripts/Auto-Pairs'                       " Auto closing paren, quotes etc.
 Plug 'vim-scripts/Align'                            " Dependency of SQLUtilities
 Plug 'vim-scripts/SQLUtilities'                     " SQL Formatting (does other stuff, but not useful to us )
-Plug 'iaalm/terminal-drawer.vim'                    " Terminal shortcut helper (auto-open, auto-focus, auto-close)
 Plug 'markonm/traces.vim'                           " Preview substitutions
 Plug 'itchyny/vim-cursorword'                       " Underline words that match word under cursor 
 Plug 'machakann/vim-highlightedyank'                " Highlight what we yanked
@@ -95,6 +94,10 @@ Plug 'tpope/vim-obsession'                        " session management
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
 Plug 'idanarye/vim-merginal'
+Plug 'gcmt/taboo.vim'
+Plug 'romainl/vim-cool'
+Plug 'wellle/targets.vim'
+Plug 'tpope/vim-endwise'
 call plug#end()
 
 " ################################
