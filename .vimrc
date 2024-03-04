@@ -305,8 +305,13 @@ let g:sqlutil_keyword_case = '\U'           " Auto capitalise keywords
 
 " ------ Mappings ------ "
 " Remap CTRL + '/' to comment line/selection
-vmap <silent><C-/> gc
-nmap <silent><C-/> gcc
+if has('win32')
+  vmap <silent><C-/> gc
+  nmap <silent><C-/> gcc
+else
+  nmap <silent> gc
+  nmap <silent> gcc
+endif
 
 " Format SQL
 vmap <silent> gqas    :SQLUFormatter<CR>
