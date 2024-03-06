@@ -44,12 +44,15 @@ highlight SpellBad cterm=bold ctermbg=darkred          " Spelling error highligh
 let &t_SI = "\e[5 q"                                   " Blinking line in insert
 let g:LargeFile=100                                    " Activate when file is > 100mb
 set shiftround
+autocmd GUIEnter * set vb t_vb= " Disable error bells and visual flash for GUI
+autocmd VimEnter * set vb t_vb= " Same as above but terminal
 
 " ################################
 " #                              #
 " #           PLUGINS            #
 " #                              #
 " ################################
+
 call plug#begin()
 
 " Git integration
@@ -122,15 +125,8 @@ Plug 'vim-scripts/LargeFile'                        " Disables some background t
 Plug 'tpope/vim-sensible'                           " Sensible vim mappings
 call plug#end()
 
-" ################################
-" #                              #
-" #       Vim Maintenance        #
-" #                              #
-" ################################
-
-" ------ Auto Updating Plugins Monthly ------ "
+" Auto Update Plugins Monthly 
 function! OnVimEnter() abort
-  " Run PlugUpdate every month automatically when entering Vim.
   if exists('g:plug_home')
     let l:filename = printf('%s/.vim_plug_update', g:plug_home)
     if !filereadable(l:filename)
@@ -147,56 +143,53 @@ endfunction
 
 autocmd VimEnter * call OnVimEnter()
 
-" ------ FIXING VIM 'FEATURES' ------ "
-
-" Stop annoying error bells/visuals
-autocmd GUIEnter * set vb t_vb= " Disable error bells and visual flash for GUI
-autocmd VimEnter * set vb t_vb= " Same as above but terminal
-                                " Fix colours
-
-" ------ Plugin Customisations ------ "
-
 " ################################
 " #                              #
 " #    Plugin Customisation      #
 " #                              #
 " ################################
 
+" Merginal
+let g:merginal_resizeWindowToBranchLen = 1
+let g:merginal_showCommands = 0
 
-" ------ TermToggle ------ "
-" This is a hack to configure the terminal to kill the terminal buffer if it
-" is sent a quit command:
-"   So if you only want to allow silent terminal closing, you should provide an
-"   extra option: :term ++kill=term. This instructs Vim to send SIGTERM to the
-"   running process if the terminal buffer needs to be closed
-" In the single function of the terminal_drawer source code, a cmd argument is
-" made and concatenates to term command. We hijack this to achieve our goal.
-let g:terminal_drawer_shell="++kill=hup"
-let g:terminal_drawer_leader="<M-F1>"
-map <silent><C-'>  :ToggleTerminalDrawer<CR>
-tmap <silent><C-'> <C-W>:ToggleTerminalDrawer<CR>
+" Elevator
+let g:elevator#timeout_msec = 0
+let g:elevator#show_on_enter = v:true
+let g:elevator#highlight = 'PmenuThumb'
 
-" ------ ALE ------ "
-"  Let CoC do it's job
-let g:ale_disable_lsp = 1
-let g:ale_floating_preview = 1
-let g:ale_linters = { 'cs': ['OmniSharp']  }
+" ALE
+let g:ale_disable_lsp = 1 "  Let CoC do it's job
+let g:ale_linters = { 'cs': ['OmniSharp'] }
+let g:ale_cursor_detail = 1
 
+" CoC
 let g:OmniSharp_coc_snippet = 1
+let g:coc_user_config = {
+  \ 'suggest.enablePreselect': v:false,
+  \ 'suggest.noselect': v:true,
+  \ 'diagnostic.displayByAle': v:true,
+  \ 'semanticTokens.enable': v:true,
+  \ 'semanticTokens.filetypes': [ "c", "python", "ts", "cs" ],
+  \ 'javascript.suggest.autoImports': v:true,
+  \ 'typescript.suggest.autoImports': v:true,
+\ }
 
-" ------ COC ------ "
-" ------ Extensions ------ "
-let g:coc_user_config = { }
-let g:coc_user_config['suggest.enablePreselect'] = v:false 
-let g:coc_user_config['suggest.noselect'] = v:true
-let g:coc_user_config['diagnostic.displayByAle'] = v:true
-let g:coc_user_config['semanticTokens.enable'] = v:true
-let g:coc_user_config['semanticTokens.filetypes'] = [ "c", "python", "ts" ]
-let g:coc_user_config['javascript.suggest.autoImports'] = v:true
-let g:coc_user_config['typescript.suggest.autoImports'] = v:true
-
-
-let g:coc_global_extensions=[ 'coc-angular', 'coc-clangd', 'coc-css', 'coc-highlight', 'coc-html', 'coc-json', 'coc-markdownlint', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-tsserver', 'coc-vimlsp', 'coc-xml' ]
+let g:coc_global_extensions= [ 
+  \ 'coc-angular',
+  \ 'coc-clangd',
+  \ 'coc-css',
+  \ 'coc-highlight',
+  \ 'coc-html',
+  \ 'coc-json',
+  \ 'coc-markdownlint',
+  \ 'coc-jedi',
+  \ 'coc-sh',
+  \ 'coc-sql',
+  \ 'coc-tsserver',
+  \ 'coc-vimlsp',
+  \ 'coc-xml' 
+\ ]
 
 noremap <silent><F2> <Plug>(coc-rename)
 
@@ -240,9 +233,6 @@ function! ShowDocumentation()
     silent call feedkeys('K', 'in')
   endif
 endfunction
-
-" Symbol renaming
-nmap <silent><leader>rn <Plug>(coc-rename)
 
 " Show references 
 nmap <silent><leader>sr  <Plug>(coc-references)
@@ -288,9 +278,6 @@ let g:rainbow_conf = {
 \}
 
 " ------ Status Line ------ "
-let g:unite_force_overwrite_statusline = 0
-let g:vimfiler_force_overwrite_statusline = 0
-let g:vimshell_force_overwrite_statusline = 0
 let g:lightline = {
                  \  'colorscheme': 'sonokai',
                  \  'active': {
@@ -313,32 +300,9 @@ let g:lightline = {
                  \ }
 
 " ------ Startify ------ "
-let g:startify_session_dir = '$HOME/vimfiles/session'
+let g:startify_session_dir = g:plug_home . '/session'
 let g:startify_files_number = 10
 
-" ------ Indentation Guide ------ "
-let g:indent_guides_enable_on_vim_startup = 1
-let g:indent_guides_guide_size = 1
-let g:indent_guides_start_level = 2
-
-" ------ SQLUtilities ------ " 
-let g:sqlutil_align_comma = 1               " Display columns in select list how SSMS does
-let g:sqlutil_align_keyword_right = 0       " Align keywords on start of word not end of word (see help for more info)
-let g:sqlutil_keyword_case = '\U'           " Auto capitalise keywords 
-
-" ------ Mappings ------ "
-" Remap CTRL + '/' to comment line/selection
-if has('win32')
-  vmap <silent><C-/> gc
-  nmap <silent><C-/> gcc
-else
-  nmap <silent> gc
-  nmap <silent> gcc
-endif
-
-" Format SQL
-vmap <silent> gqas    :SQLUFormatter<CR>
-nmap <silent> gqas    vip gqas
 
 map <silent><C-T> :tabedit<CR>
 " Navigate tabs with ctrl+w ctrl+h/l
@@ -346,9 +310,6 @@ map <silent><C-H> :tabprevious<CR>
 map <silent><C-L> :tabnext<CR>
 
 " Commands 
-
-" Toggle quickfix window
-nmap <silent><leader>q <Plug>(qf_qf_toggle)
 
 let g:qfpreview = {
 \   'close':"\<Esc>",
@@ -385,8 +346,12 @@ autocmd QuickFixCmdPost    l* nested {
    call feedkeys("p") 
 }
 
-nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
 
+let g:fern#hide_cursor=1
+let g:fern#default_hidden = 1
+let g:fern_git_status#disable_ignored=1
+let g:fern_git_status#disable_untracked=1
+let g:fern_git_status#disable_submodules=1
 
 augroup Fern
   autocmd!
@@ -403,12 +368,7 @@ augroup Fern
   autocmd FileType fern nmap <buffer><silent> cd <Plug>(fern-action-cd)
 augroup END
 
-
-let g:fern#hide_cursor=1
-let g:fern#default_hidden = 1
-let g:fern_git_status#disable_ignored=1
-let g:fern_git_status#disable_untracked=1
-let g:fern_git_status#disable_submodules=1
+nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
 
 " If another buffer tries to replace Fern, put it in the other window, and bring back Fern.
 " Need to troubleshoot/fix this
@@ -429,9 +389,6 @@ if has('win32')
 endif
 let &runtimepath = &runtimepath . ',' . g:vimspector_base_dir
 
-let g:elevator#timeout_msec = 0
-let g:elevator#show_on_enter = v:true
-let g:elevator#highlight = 'PmenuThumb'
 
 " TODO 
 " Add following extensions to Coc:
@@ -446,9 +403,9 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
-      echow "Building project"
-      let output = system("dotnet build -v quiet --nologo -c Debug") 
-      for l:line in split(output,'\n')
+      echow "Rebuilding project"
+      let output = split(system("dotnet build -v quiet --nologo -c Debug")) 
+      for l:line in output
         echow l:line
       endfor
     endif
@@ -459,9 +416,6 @@ endfunction
 autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
 autocmd FileType * imap <silent><F5> <Esc>:call ExecuteOrDebug()<CR>
 autocmd FileType dbout set nowrap
-
-let g:merginal_resizeWindowToBranchLen = 1
-let g:merginal_showCommands = 0
 
 cnoreabbrev ShowChanges GitGutterLineHighlightsEnable
 cnoreabbrev HideChanges GitGutterLineHighlightsDisable
