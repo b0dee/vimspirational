@@ -131,9 +131,6 @@ autocmd VimEnter * call OnVimEnter()
 autocmd GUIEnter * set vb t_vb= " Disable error bells and visual flash for GUI
 autocmd VimEnter * set vb t_vb= " Same as above but terminal
                                 " Fix colours
-if !has('gui_running')
-    set t_Co=256                " Set number of colours available
-endif
 
 " ------ Plugin Customisations ------ "
 
