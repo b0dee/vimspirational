@@ -460,8 +460,6 @@ autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
 autocmd FileType * imap <silent><F5> <Esc>:call ExecuteOrDebug()<CR>
 autocmd FileType dbout set nowrap
 
-nmap <silent><esc> :noh<CR>
-
 let g:merginal_resizeWindowToBranchLen = 1
 let g:merginal_showCommands = 0
 
