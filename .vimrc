@@ -51,53 +51,75 @@ set shiftround
 " #                              #
 " ################################
 call plug#begin()
-Plug 'vim-scripts/LargeFile'                        " Disables some background things Vim does when opening large files
-Plug 'tpope/vim-repeat'                             " Repeat actions made by plugins with `.`
-Plug 'tpope/vim-surround'                           " Replace surround paren/quote/etc.
-Plug 'tpope/vim-sensible'                           " Sensible vim mappings
-Plug 'tpope/vim-jdaddy'                             " JSON pretty print and object manipulation (gqaj/gqij)
+
+" Git integration
 Plug 'tpope/vim-fugitive'                           " Best git plugin for Vim
-Plug 'tpope/vim-commentary'                         " Commenting shortcuts
-Plug 'mhinz/vim-startify'                           " Vim Start Screen
 Plug 'airblade/vim-gitgutter'
-Plug 'mg979/vim-visual-multi'                       " Multi line editing shortcuts (ctrl+n,ctrl+arrows,q to skip, Q to remove)
-Plug 'luochen1990/rainbow'                          " Rainbow parenthesis
 Plug 'junegunn/gv.vim'                              " Git commit browser for Vim (dependancy: vim-fugitive)
-Plug 'itchyny/lightline.vim'                        " Vim Status Line
-Plug 'MattesGroeger/vim-bookmarks'                  " Vim bookmarking
-Plug 'vim-scripts/ReplaceWithRegister'              " Replace in place with gr<MOTION>
-Plug 'vim-scripts/Auto-Pairs'                       " Auto closing paren, quotes etc.
-Plug 'vim-scripts/Align'                            " Dependency of SQLUtilities
-Plug 'vim-scripts/SQLUtilities'                     " SQL Formatting (does other stuff, but not useful to us )
-Plug 'markonm/traces.vim'                           " Preview substitutions
-Plug 'itchyny/vim-cursorword'                       " Underline words that match word under cursor 
-Plug 'machakann/vim-highlightedyank'                " Highlight what we yanked
-Plug 'mbbill/undotree'                              " Visualise Vim's undo tree - need to do more reading on this one
-Plug 'kana/vim-textobj-user'                        " Create custom text objects. Get better at Vim first, then we can enhance ourselves even further with customisation
-Plug 'kana/vim-textobj-line'                        " Custom line object - believe this is dependant on vim-textobj-user
-Plug 'sheerun/vim-polyglot'                         " Best Vim language pack (syntax highlighting)
-Plug 'sainnhe/sonokai'                              " Colorscheme
-Plug 'OmniSharp/omnisharp-vim', {'do':':OmniSharpInstall' } " C# LSP
-Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'npm ci'}     " LSP
-Plug 'dense-analysis/ale' 
-Plug 'romainl/vim-qf'
+Plug 'idanarye/vim-merginal'
+
+" Project Explorer
 Plug 'lambdalisue/fern.vim'                         " File explorer 
 Plug 'lambdalisue/fern-hijack.vim'                  " Make fern default FE
 Plug 'lambdalisue/fern-git-status.vim'              " Fern git status 
 Plug 'lambdalisue/fern-mapping-git.vim'             " Fern git integration
 Plug 'hrsh7th/fern-mapping-collapse-or-leave.vim'   " Fix using h key in fern drawer (when at root and all collapsed go up a dir)
+
+" LSP 
+Plug 'OmniSharp/omnisharp-vim', {'do':':OmniSharpInstall' } " C# LSP
+Plug 'neoclide/coc.nvim', {'branch': 'release', 'do': 'npm ci'}     " LSP
+
+" Debugger
 Plug 'puremourning/vimspector'                      " Debugging 
-Plug 'b0dee/elevator.vim'                        " Vim scrollbar - using my fork for QOL improvements
-Plug 'bfrg/vim-qf-preview'
-Plug 'tpope/vim-dotenv'                           " Dotenv file integration so can save connection details safely
-Plug 'tpope/vim-obsession'                        " session management
+
+" Linting
+Plug 'dense-analysis/ale' 
+
+" Colour Scheme
+Plug 'sainnhe/sonokai'                              " Colorscheme
+
+" DBMS
 Plug 'tpope/vim-dadbod'
 Plug 'kristijanhusak/vim-dadbod-ui'
-Plug 'idanarye/vim-merginal'
-Plug 'gcmt/taboo.vim'
-Plug 'romainl/vim-cool'
+
+" Text Objects
+Plug 'kana/vim-textobj-user'                        " Create custom text objects. Get better at Vim first, then we can enhance ourselves even further with customisation
+Plug 'kana/vim-textobj-line'                        " Custom line object - believe this is dependant on vim-textobj-user
+Plug 'tpope/vim-jdaddy'                             " JSON pretty print and object manipulation (gqaj/gqij)
 Plug 'wellle/targets.vim'
+Plug 'tpope/vim-surround'                           " Replace surround paren/quote/etc.
+
+" Motions
+Plug 'vim-scripts/ReplaceWithRegister'              " Replace in place with gr<MOTION>
+
+" Utilities
+Plug 'tpope/vim-repeat'                             " Repeat actions made by plugins with `.`
+Plug 'mg979/vim-visual-multi'                       " Multi line editing shortcuts (ctrl+n,ctrl+arrows,q to skip, Q to remove)
+Plug 'tpope/vim-commentary'                         " Commenting shortcuts
+Plug 'MattesGroeger/vim-bookmarks'                  " Vim bookmarking
+Plug 'tpope/vim-dotenv'                           " Dotenv file integration so can save connection details safely
+Plug 'tpope/vim-obsession'                        " session management
+Plug 'gcmt/taboo.vim'
+Plug 'mbbill/undotree'                              " Visualise Vim's undo tree - need to do more reading on this one
+
+" UI/UX
+Plug 'mhinz/vim-startify'                           " Vim Start Screen
+Plug 'markonm/traces.vim'                           " Preview substitutions
+Plug 'itchyny/vim-cursorword'                       " Underline words that match word under cursor 
+Plug 'machakann/vim-highlightedyank'                " Highlight what we yanked
+Plug 'vim-scripts/Auto-Pairs'                       " Auto closing paren, quotes etc.
+Plug 'itchyny/lightline.vim'                        " Vim Status Line
+Plug 'luochen1990/rainbow'                          " Rainbow parenthesis
+Plug 'b0dee/elevator.vim'                        " Vim scrollbar - using my fork for QOL improvements
+Plug 'romainl/vim-cool'
 Plug 'tpope/vim-endwise'
+Plug 'romainl/vim-qf'
+Plug 'bfrg/vim-qf-preview'
+Plug 'sheerun/vim-polyglot'                         " Best Vim language pack (syntax highlighting)
+
+" Configuration Changes
+Plug 'vim-scripts/LargeFile'                        " Disables some background things Vim does when operating on large files
+Plug 'tpope/vim-sensible'                           " Sensible vim mappings
 call plug#end()
 
 " ################################
