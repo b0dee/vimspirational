@@ -176,6 +176,8 @@ let g:coc_user_config['typescript.suggest.autoImports'] = v:true
 
 let g:coc_global_extensions=[ 'coc-angular', 'coc-clangd', 'coc-css', 'coc-highlight', 'coc-html', 'coc-json', 'coc-markdownlint', 'coc-jedi', 'coc-sh', 'coc-sql', 'coc-tsserver', 'coc-vimlsp', 'coc-xml' ]
 
+noremap <silent><F2> <Plug>(coc-rename)
+
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
 " no select by `"suggest.noselect": v:true` in your configuration file
@@ -304,8 +306,13 @@ let g:sqlutil_keyword_case = '\U'           " Auto capitalise keywords
 
 " ------ Mappings ------ "
 " Remap CTRL + '/' to comment line/selection
-vmap <silent><C-/> gc
-nmap <silent><C-/> gcc
+if has('win32')
+  vmap <silent><C-/> gc
+  nmap <silent><C-/> gcc
+else
+  nmap <silent> gc
+  nmap <silent> gcc
+endif
 
 " Format SQL
 vmap <silent> gqas    :SQLUFormatter<CR>
