@@ -285,6 +285,19 @@ let g:rainbow_conf = {
 \ 	},
 \}
 
+function! Now() abort
+  return strftime('%H:%M %d/%m')
+endfunction
+
+function! RelativeOrAbsolutePath() abort
+  let cwd = getcwd()
+  if has('win32') 
+    let l:home = substitute($HOME, '\\', '\\\\', 'g')
+    let cwd = substitute(cwd, l:home, '~', "")
+  endif
+  return cwd
+endfunction
+
 " ------ Status Line ------ "
 let g:lightline = {
                  \  'colorscheme': 'sonokai',
