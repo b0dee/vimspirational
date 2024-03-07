@@ -409,13 +409,21 @@ function! ExecuteOrDebug()
     endif
   else 
     if &filetype == "cs"
-      echow "Rebuilding project"
-      let output = split(system("dotnet build -v quiet --nologo -c Debug")) 
-      for l:line in output
-        echow l:line
+      echom "Building project."
+      let l:build_output = split(system("dotnet build -v quiet --nologo -c Debug"), "\n")
+      for line in l:build_output
+        " Informational line, i.e. build time/success/failure, warnings, errors,
+        if match(line,':') == -1 || match(line, 'Time Elapsed') >= 0
+          echow trim(line)
+        elseif match(line, ']') == -1
+          let [ file, error ] = split(line, ' : ')
+          echow file 
+          echow '    ' . error
+        endif
       endfor
     endif
-    execute "normal \<Plug>VimspectorContinue"
+    echom "Finished build. Launching debug session."
+    silent execute "normal \<Plug>(omnisharp_debug_project)"
   endif
 endfunction
 
