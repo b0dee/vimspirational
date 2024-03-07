@@ -352,18 +352,23 @@ function! ExecuteOrDebug()
       echom "Building project."
       let l:build_output = split(system("dotnet build -v quiet --nologo -c Debug"), "\n")
       for line in l:build_output
-        " Informational line, i.e. build time/success/failure, warnings, errors,
         if match(line,':') == -1 || match(line, 'Time Elapsed') >= 0
-          echow trim(line)
-        elseif match(line, ']') == -1
+          " Informational line, i.e. build time/success/failure, warnings, errors,
+          echom trim(line)
+        elseif match(line, ' : ') != -1 && match(line, '[') == -1
+          " Package warning
           let [ file, error ] = split(line, ' : ')
-          echow file 
-          echow '    ' . error
+          echom file . ':'
+          echom '    ' . error
+        elseif match(line, '):') != -1
+          " Code warning/error
+          echom split(line, '[')[0]
+          echom 
         endif
       endfor
     endif
     echom "Finished build. Launching debug session."
-    silent execute "normal \<Plug>(omnisharp_debug_project)"
+    execute "normal \<Plug>(omnisharp_debug_project)"
   endif
 endfunction
 
