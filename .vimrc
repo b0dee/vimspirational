@@ -192,8 +192,14 @@ let g:coc_global_extensions= [
   \ 'coc-vimlsp',
   \ 'coc-xml' 
 \ ]
-
-noremap <silent><F2> <Plug>(coc-rename)
+function! RenameSymbol() abort
+  if &filetype == "cs"
+    execute "normal \<Plug>(omnisharp_rename)"
+  else
+  endif
+    execute "normal \<Plug>(coc-rename)"
+endfunction
+autocmd FileType * noremap <silent><F2> :call RenameSymbol()<CR>
 
 " Use tab for trigger completion with characters ahead and navigate
 " NOTE: There's always complete item selected by default, you may want to enable
