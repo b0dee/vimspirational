@@ -302,8 +302,6 @@ let g:lightline = {
                  \  'tabline': {
                  \    'left': [ [ 'tabs' ] ],
                  \    'right': [ [ ] ],
-                 \    'active': [ 'tabnum', 'filename', 'modified' ],
-                 \    'inactive': [ 'tabnum', 'filename', 'modified' ]
                  \  }
                  \ }
 
