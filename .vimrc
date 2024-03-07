@@ -164,9 +164,10 @@ let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:ale_cursor_detail = 1
 let g:ale_floating_preview = 1
 
+" OmniSharp
+let g:OmniSharp_coc_snippet = 1
 
 " CoC
-let g:OmniSharp_coc_snippet = 1
 let g:coc_user_config = {
   \ 'suggest.enablePreselect': v:false,
   \ 'suggest.noselect': v:true,
@@ -192,184 +193,107 @@ let g:coc_global_extensions= [
   \ 'coc-vimlsp',
   \ 'coc-xml' 
 \ ]
-function! RenameSymbol() abort
-  if &filetype == "cs"
-    execute "normal \<Plug>(omnisharp_rename)"
-  else
-  endif
-    execute "normal \<Plug>(coc-rename)"
-endfunction
-autocmd FileType * noremap <silent><F2> :call RenameSymbol()<CR>
-
-" Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": v:true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
-inoremap <silent><expr> <TAB>
-      \ coc#pum#visible() ? coc#pum#next(1) :
-      \ CheckBackspace() ? "\<Tab>" :
-      \ coc#refresh()
-inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
-
-" Make <CR> to accept selected completion item or notify coc.nvim to format
-" <C-g>u breaks current undo, please make your own choice
-inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
-                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
-
-function! CheckBackspace() abort
-  let col = col('.') - 1
-  return !col || getline('.')[col - 1]  =~# '\s'
-endfunction
-
-" GoTo code navivgation
-autocmd FileType * nmap <silent> gd <Plug>(coc-definition)
-autocmd FileType * nmap <silent> gi <Plug>(coc-implementation)
-
-" Overwrite for C# files
-autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
-autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
-autocmd FileType cs nmap <silent> <buffer> gpi <Plug>(omnisharp_preview_implementations)
-
-" Use K to show documentation in preview window
-nnoremap <silent>K :call ShowDocumentation()<CR>
-
-function! ShowDocumentation()
-  if coc#rpc#ready() && CocAction('hasProvider', 'hover') && !coc#float#has_float()
-    silent call CocActionAsync('doHover')
-  else
-    silent call feedkeys('K', 'in')
-  endif
-endfunction
-
-" Show references 
-nmap <silent><leader>sr  <Plug>(coc-references)
 
 " Fix comments in json files
 autocmd FileType json syntax match Comment +\/\/.\+$+
 
-" ------ Colorscheme ------ "
+" Colorscheme 
 let g:sonokai_style = 'andromeda'
 let g:sonokai_better_performance = 1
 colorscheme sonokai
 
-" ------ Bookmarks ------ "
+" Bookmarks
 let g:bookmark_sign = '♥'
 
-" ------ Rainbow ------ "
+" Rainbow
 let g:rainbow_active = 1
 let g:rainbow_conf = {
-\ 	'operators': '_,_',
-\ 	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
-\ 	'separately': {
-\ 		'*': {},
-\ 		'markdown': {
-\ 			'parentheses_options': 'containedin=markdownCode contained', 
-\ 		},
-\ 		'lisp': {
-\ 			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'], 
-\ 		},
-\ 		'haskell': {
-\ 			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'], 
-\ 		},
-\ 		'vim': {
-\ 			'parentheses_options': 'containedin=vimFuncBody', 
-\ 		}, 
-\ 		'perl': {
-\ 			'syn_name_prefix': 'perlBlockFoldRainbow', 
-\ 		},
-\ 		'stylus': {
-\ 			'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'], 
-\ 		},
-\ 		'css': 0, 
-\ 	},
-\}
+  \	'operators': '_,_',
+  \	'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/{/ end=/}/ fold'],
+  \	'separately': {
+  \		'*': {},
+  \		'markdown': {
+  \			'parentheses_options': 'containedin=markdownCode contained', 
+  \		},
+  \		'lisp': {
+  \			'guifgs': ['royalblue3', 'darkorange3', 'seagreen3', 'firebrick', 'darkorchid3'], 
+  \		},
+  \		'haskell': {
+  \			'parentheses': ['start=/(/ end=/)/ fold', 'start=/\[/ end=/\]/ fold', 'start=/\v\{\ze[^-]/ end=/}/ fold'], 
+  \		},
+  \		'vim': {
+  \			'parentheses_options': 'containedin=vimFuncBody', 
+  \		}, 
+  \		'perl': {
+  \			'syn_name_prefix': 'perlBlockFoldRainbow', 
+  \		},
+  \		'stylus': {
+  \			'parentheses': ['start=/{/ end=/}/ fold contains=@colorableGroup'], 
+  \		},
+  \		'css': 0, 
+  \	},
+\ }
 
-function! Now() abort
-  return strftime('%d/%m %H:%M')
-endfunction
-
-function! RelativeOrAbsolutePath() abort
-  let cwd = getcwd()
-  if has('win32') 
-    let l:home = substitute($HOME, '\\', '\\\\', 'g')
-    let cwd = substitute(cwd, l:home, '~', "")
-  endif
-  return cwd
-endfunction
-
-" ------ Status Line ------ "
+" Status Line
 let g:lightline = {
-                 \  'colorscheme': 'sonokai',
-                 \  'active': {
-                 \    'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'pwd', 'relativepath', 'modified' ] ],
-                 \    'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], [ 'filetype', 'fileencoding', 'fileformat'  ] ], 
-                 \  },
-                 \  'inactive': { 
-                 \    'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], []], 
-                 \  },
-                 \  'component_function': {
-                 \    'gitbranch':'FugitiveHead',
-                 \    'pwd': 'RelativeOrAbsolutePath',
-                 \    'now': 'Now'
-                 \  },
-                 \  'component': {
-                 \    'lineinfo': '%3l:%-2v%<',
-                 \  },
-                 \  'tabline': {
-                 \    'left': [ [ 'tabs' ] ],
-                 \    'right': [ [ ] ],
-                 \  }
-                 \ }
+  \ 'colorscheme': 'sonokai',
+  \ 'active': {
+  \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'pwd', 'relativepath', 'modified' ] ],
+  \   'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], [ 'filetype', 'fileencoding', 'fileformat'  ] ], 
+  \ },
+  \ 'inactive': { 
+  \   'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], []], 
+  \ },
+  \ 'component_function': {
+  \   'gitbranch':'FugitiveHead',
+  \   'pwd': 'RelativeOrAbsolutePath',
+  \   'now': 'Now'
+  \ },
+  \ 'component': {
+  \   'lineinfo': '%3l:%-2v%<',
+  \ },
+  \ 'tabline': {
+  \   'left': [ [ 'tabs' ] ],
+  \   'right': [ [ ] ],
+  \ }
+\ }
 
-" ------ Startify ------ "
+" Startify
 let g:startify_session_dir = g:plug_home . '/session'
 let g:startify_files_number = 10
 
-
-map <silent><C-T> :tabedit<CR>
-" Navigate tabs with ctrl+w ctrl+h/l
-map <silent><C-H> :tabprevious<CR>
-map <silent><C-L> :tabnext<CR>
-
-" Commands 
-
+" QF Preview 
 let g:qfpreview = {
-\   'close':"\<Esc>",
-\   'next':'j',
-\   'previous':'k'
+  \ 'close':"\<Esc>",
+  \ 'next':'j',
+  \ 'previous':'k'
 \}
- 
-" Preview quickfix under cursor
-" Remap j and k to hop up and down quickfix list showing previews of newly
-" selected entry
+
 augroup qfpreview
-    autocmd!
-    autocmd FileType qf nmap <silent><buffer> p <plug>(qf-preview-open)
-    autocmd FileType qf nmap <silent><buffer> <Esc> :cclose<CR>
-    autocmd FileType qf nmap <silent><buffer> q :cclose<CR>
+  autocmd!
+  " Preview quickfix under cursor
+  autocmd FileType qf nmap <silent><buffer> p <plug>(qf-preview-open)
+  autocmd FileType qf nmap <silent><buffer> <Esc> :cclose<CR>
+  autocmd FileType qf nmap <silent><buffer> q :cclose<CR>
+
+  " Auto open quickfix window in c/lwindow mode (auto closes when no more errors
+  " in list)
+  " The default autocmd (... nested cwindow) does not auto select quickfix window 
+  " unlike the actual :cwindow command
+  " We can emulate this with the <C-w>b command - can't find any docs on this but 
+  " it seems to auto switch to quickfix window. 
+  " Follow up with 'p' which previews the quickfix location
+  autocmd QuickFixCmdPost [^l]* cwindow 
+    \ | call feedkeys("\<C-w>b", 'in') 
+    \ | let b:gitgutter_was_enabled = gitgutter#utility#getbufvar(expand('<abuf>'), 'enabled') 
+    \ | call feedkeys("p") 
+  autocmd QuickFixCmdPost    l* lwindow 
+    \ | call feedkeys("\<C-w>b", 'in') 
+    \ | let b:gitgutter_was_enabled = gitgutter#utility#getbufvar(expand('<abuf>'), 'enabled') 
+    \ | call feedkeys("p") 
 augroup END
 
-" Auto open quickfix window in c/lwindow mode (auto closes when no more errors
-" in list)
-" The default autocmd (... nested cwindow) does not auto select quickfix window 
-" unlike the actual :cwindow command
-" We can emulate this with the <C-w>b command - can't find any docs on this but 
-" it seems to auto switch to quickfix window. 
-" Follow up with 'p' which previews the quickfix location
-autocmd QuickFixCmdPost [^l]* nested {
-   cwindow 
-   call feedkeys("\<C-w>b", 'in') 
-   call feedkeys("p") 
-}
-
-autocmd QuickFixCmdPost    l* nested {
-   lwindow 
-   call feedkeys("\<C-w>b", 'in')
-   call feedkeys("p") 
-}
-
-
+" Fern
 let g:fern#hide_cursor=1
 let g:fern#default_hidden = 1
 let g:fern_git_status#disable_ignored=1
@@ -391,18 +315,15 @@ augroup Fern
   autocmd FileType fern nmap <buffer><silent> cd <Plug>(fern-action-cd)
 augroup END
 
-nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
-
 " If another buffer tries to replace Fern, put it in the other window, and bring back Fern.
 " Need to troubleshoot/fix this
 autocmd BufEnter * if winnr() == winnr('h') && bufname('#') =~ 'fern:\/\/.*' && bufname('%') !~ 'fern:\/\/.*' && winnr('$') > 1 |
     \ let buf=bufnr() | buffer# | execute "normal! \<C-W>w" | execute 'buffer'.buf | endif
 
-" ------ Useful Shortcuts ------ "
-" Pretty Print Shortcut: `gqa`
-" Format JSON: gqaj (j for json)
-" Format SQL : gqas (s for SQL)
+" DadBod UI
+autocmd FileType dbout set nowrap
 
+" Vimspector
 let g:vimspector_enable_mappings = 'HUMAN'
 let g:vimspector_install_gadgets=[ '--all', 'netcoredbg', 'vscode-js-debug' ]
 set noequalalways
@@ -413,9 +334,11 @@ endif
 let &runtimepath = &runtimepath . ',' . g:vimspector_base_dir
 
 
-" TODO 
-" Add following extensions to Coc:
-" - Angular Language Server
+" ################################
+" #                              #
+" #      CUSTOM FUNCTIONS        #
+" #                              #
+" ################################
 
 function! ExecuteOrDebug()
   if &filetype == "sql" 
@@ -444,14 +367,102 @@ function! ExecuteOrDebug()
   endif
 endfunction
 
+function! Now() abort
+  return strftime('%d/%m %H:%M')
+endfunction
+
+function! RelativeOrAbsolutePath() abort
+  let cwd = getcwd()
+  if has('win32') 
+    let l:home = substitute($HOME, '\\', '\\\\', 'g')
+    let cwd = substitute(cwd, l:home, '~', "")
+  endif
+  return cwd
+endfunction
+
+function! ShowDocumentation()
+  if coc#rpc#ready() && CocAction('hasProvider', 'hover') && !coc#float#has_float()
+    silent call CocActionAsync('doHover')
+  else
+    silent call feedkeys('K', 'in')
+  endif
+endfunction
+
+function! RenameSymbol() abort
+  if &filetype == "cs"
+    execute "normal \<Plug>(omnisharp_rename)"
+  else
+  endif
+    execute "normal \<Plug>(coc-rename)"
+endfunction
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
+endfunction
+
+
+" ################################
+" #                              #
+" #           MAPPINGS           #
+" #                              #
+" ################################
+nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
+
+" Use <ctrl> + 't' to create a new tab
+noremap <silent><C-T> :tabedit<CR>
+noremap! <silent><C-T> :tabedit<CR>
+" Navigate tabs with ctrl+w ctrl+h/l
+noremap <silent><C-H> :tabprevious<CR>
+noremap <silent><C-L> :tabnext<CR>
+noremap! <silent><C-H> :tabprevious<CR>
+noremap! <silent><C-L> :tabnext<CR>
+
+" Make ctrl + backspace work like normal in insert and command mode
+noremap! <C-BS> <C-W>
+
+" LSP symbol renaming
+autocmd FileType * noremap <silent><F2> :call RenameSymbol()<CR>
+
+" Run current SQL file (in DADBOD-UI) or start debugging session
 autocmd FileType * map <silent><F5> :call ExecuteOrDebug()<CR>
 autocmd FileType * imap <silent><F5> <Esc>:call ExecuteOrDebug()<CR>
-autocmd FileType dbout set nowrap
 
+" GoTo code navivgation
+autocmd FileType * nmap <silent> gd <Plug>(coc-definition)
+autocmd FileType * nmap <silent> gi <Plug>(coc-implementation)
+
+" Overwrite for C# files
+autocmd FileType cs nmap <silent> <buffer> gd <Plug>(omnisharp_go_to_definition)
+autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementations)
+autocmd FileType cs nmap <silent> <buffer> gpi <Plug>(omnisharp_preview_implementations)
+
+" Use K to show documentation in preview window
+nnoremap <silent>K :call ShowDocumentation()<CR>
+
+" Show references 
+nmap <silent><leader>sr  <Plug>(coc-references)
+
+" Use tab for trigger completion with characters ahead and navigate
+" NOTE: There's always complete item selected by default, you may want to enable
+" no select by `"suggest.noselect": v:true` in your configuration file
+" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
+" other plugin before putting this into your config
+inoremap <silent><expr> <TAB>
+      \ coc#pum#visible() ? coc#pum#next(1) :
+      \ CheckBackspace() ? "\<Tab>" :
+      \ coc#refresh()
+inoremap <expr><S-TAB> coc#pum#visible() ? coc#pum#prev(1) : "\<C-h>"
+
+" Make <CR> to accept selected completion item or notify coc.nvim to format
+" <C-g>u breaks current undo, please make your own choice
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
+
+
+" short hands for Git Gutter magic
 cnoreabbrev ShowChanges GitGutterLineHighlightsEnable
 cnoreabbrev HideChanges GitGutterLineHighlightsDisable
 cnoreabbrev ToggleChanges GitGutterLineHighlightsToggle
 cnoreabbrev Stage GitGutterPreviewHunk
-" Make ctrl + backspace work like normal in insert and command mode
-inoremap <C-BS> <C-W>
-cnoremap <C-BS> <C-W>
+
