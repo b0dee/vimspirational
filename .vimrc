@@ -286,7 +286,7 @@ let g:rainbow_conf = {
 \}
 
 function! Now() abort
-  return strftime('%H:%M %d/%m')
+  return strftime('%d/%m %H:%M')
 endfunction
 
 function! RelativeOrAbsolutePath() abort
