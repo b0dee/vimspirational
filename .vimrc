@@ -353,7 +353,7 @@ function! ExecuteOrDebug()
       let l:build_output = split(system("dotnet build -v quiet --nologo -c Debug"), "\n")
       for line in l:build_output
         if match(line,':') == -1 || match(line, 'Time Elapsed') >= 0
-          " Informational line, i.e. build time/success/failure, warnings, errors,
+          " Informational line, i.e. build time/success/failure, warning/ error count
           echom trim(line)
         elseif match(line, ' : ') != -1 && match(line, '[') == -1
           " Package warning
