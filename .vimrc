@@ -162,6 +162,8 @@ let g:elevator#highlight = 'PmenuThumb'
 let g:ale_disable_lsp = 1 "  Let CoC do it's job
 let g:ale_linters = { 'cs': ['OmniSharp'] }
 let g:ale_cursor_detail = 1
+let g:ale_floating_preview = 1
+
 
 " CoC
 let g:OmniSharp_coc_snippet = 1
