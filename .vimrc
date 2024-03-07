@@ -303,11 +303,15 @@ let g:lightline = {
                  \  'colorscheme': 'sonokai',
                  \  'active': {
                  \    'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'pwd', 'relativepath', 'modified' ] ],
-                 \    'right': [ [ 'lineinfo' ], [ 'percent' ], [ 'filetype', 'fileencoding', 'fileformat', 'lineinfo', ] ], 
+                 \    'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], [ 'filetype', 'fileencoding', 'fileformat'  ] ], 
+                 \  },
+                 \  'inactive': { 
+                 \    'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], []], 
                  \  },
                  \  'component_function': {
                  \    'gitbranch':'FugitiveHead',
-                 \    'pwd': 'getcwd'
+                 \    'pwd': 'RelativeOrAbsolutePath',
+                 \    'now': 'Now'
                  \  },
                  \  'component': {
                  \    'lineinfo': '%3l:%-2v%<',
