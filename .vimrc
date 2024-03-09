@@ -9,7 +9,9 @@ filetype indent on                                     " Indent based on file ty
 " Set leader to space
 let mapleader=" "
 set confirm
-set pumheight=5                                        " Limit CoC to 5 sugestions
+set nostartofline
+set noendofline
+set pumheight=15                                        " Limit CoC to 5 sugestions
 set signcolumn=yes                                     " Always show sign column 
 set tabstop=2 shiftwidth=2 softtabstop=2               " Indentation levels
 set expandtab smarttab autoindent                      " Tab settings
@@ -119,6 +121,7 @@ Plug 'tpope/vim-endwise'
 Plug 'romainl/vim-qf'
 Plug 'bfrg/vim-qf-preview'
 Plug 'sheerun/vim-polyglot'                         " Best Vim language pack (syntax highlighting)
+Plug 'lambdalisue/battery.vim'
 
 " Configuration Changes
 Plug 'vim-scripts/LargeFile'                        " Disables some background things Vim does when operating on large files
@@ -165,21 +168,52 @@ let g:ale_cursor_detail = 1
 let g:ale_floating_preview = 1
 
 " OmniSharp
+let g:OmniSharp_highlighting = 0
 let g:OmniSharp_coc_snippet = 1
+let g:OmniSharp_popup_position = 'peek'
+let g:OmniSharp_popup_options = {
+\ 'highlight': 'Normal',
+\ 'padding': [0],
+\ 'border': [1],
+\ 'borderchars': ['─', '│', '─', '│', '╭', '╮', '╯', '╰'],
+\ 'borderhighlight': ['ModeMsg']
+\}
+" \ 'close': '<Esc>',
+let g:OmniSharp_popup_mappings = {
+\ 'sigNext': '<C-n>',
+\ 'sigPrev': '<C-p>',
+\ 'pageDown': ['<C-f>', '<PageDown>'],
+\ 'pageUp': ['<C-b>', '<PageUp>'],
+\ 'lineDown': '<C-j>',
+\ 'lineUp': '<C-k>',
+\ 'sigParamNext': '<C-l>',
+\ 'sigParamPrev': '<C-h>'
+\}
+let g:OmniSharp_highlight_groups = {
+\ 'ExcludedCode': 'NonText'
+\}
 
 " CoC
 let g:coc_user_config = {
+  \ 'floatFactory.floatConfig': {
+  \   'border': v:true
+  \ },
+  \ 'suggest.floatConfig': {
+  \   'border': v:true
+  \ },
   \ 'suggest.enablePreselect': v:false,
   \ 'suggest.noselect': v:true,
+  \ 'suggest.virtualText': v:true,
+  \ 'suggest.acceptSuggestionOnCommitCharacter': v:true,
   \ 'diagnostic.displayByAle': v:true,
-  \ 'semanticTokens.enable': v:true,
-  \ 'semanticTokens.filetypes': [ "c", "python", "ts", "cs" ],
   \ 'javascript.suggest.autoImports': v:true,
   \ 'typescript.suggest.autoImports': v:true,
+  \ 'colors.enable': v:true,
 \ }
 
 let g:coc_global_extensions= [ 
   \ 'coc-angular',
+  \ 'coc-snippets',
   \ 'coc-clangd',
   \ 'coc-css',
   \ 'coc-highlight',
@@ -191,7 +225,7 @@ let g:coc_global_extensions= [
   \ 'coc-sql',
   \ 'coc-tsserver',
   \ 'coc-vimlsp',
-  \ 'coc-xml' 
+  \ 'coc-xml',
 \ ]
 
 " Fix comments in json files
@@ -234,12 +268,17 @@ let g:rainbow_conf = {
   \	},
 \ }
 
+" Battery
+let g:battery#update_statusline = 1 " For statusline.
+let g:battery#component_format = "%v%%"
+
+
 " Status Line
 let g:lightline = {
   \ 'colorscheme': 'sonokai',
   \ 'active': {
   \   'left': [ [ 'mode', 'paste' ], [ 'gitbranch', 'readonly', 'pwd', 'relativepath', 'modified' ] ],
-  \   'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], [ 'filetype', 'fileencoding', 'fileformat'  ] ], 
+  \   'right': [ [ 'battery', 'now'  ], [ 'lineinfo', 'percent' ], [ 'filetype', 'fileencoding', 'fileformat'  ] ], 
   \ },
   \ 'inactive': { 
   \   'right': [ [ 'now' ], [ 'lineinfo', 'percent' ], []], 
@@ -247,7 +286,8 @@ let g:lightline = {
   \ 'component_function': {
   \   'gitbranch':'FugitiveHead',
   \   'pwd': 'RelativeOrAbsolutePath',
-  \   'now': 'Now'
+  \   'now': 'Now',
+  \   'battery': 'battery#component',
   \ },
   \ 'component': {
   \   'lineinfo': '%3l:%-2v%<',
@@ -366,9 +406,11 @@ function! ExecuteOrDebug()
           echom 
         endif
       endfor
+      echom "Finished build. Launching debug session."
+      execute "normal \<Plug>(omnisharp_debug_project)"
+    else
+      execute "normal \<Plug>VimspectorContinue"
     endif
-    echom "Finished build. Launching debug session."
-    execute "normal \<Plug>(omnisharp_debug_project)"
   endif
 endfunction
 
@@ -388,6 +430,8 @@ endfunction
 function! ShowDocumentation()
   if coc#rpc#ready() && CocAction('hasProvider', 'hover') && !coc#float#has_float()
     silent call CocActionAsync('doHover')
+  elseif &filetype == "cs"
+    silent :OmniSharpDocumentation
   else
     silent call feedkeys('K', 'in')
   endif
@@ -443,16 +487,14 @@ autocmd FileType cs nmap <silent> <buffer> gi <Plug>(omnisharp_find_implementati
 autocmd FileType cs nmap <silent> <buffer> gpi <Plug>(omnisharp_preview_implementations)
 
 " Use K to show documentation in preview window
+
+
 nnoremap <silent>K :call ShowDocumentation()<CR>
 
 " Show references 
 nmap <silent><leader>sr  <Plug>(coc-references)
 
 " Use tab for trigger completion with characters ahead and navigate
-" NOTE: There's always complete item selected by default, you may want to enable
-" no select by `"suggest.noselect": v:true` in your configuration file
-" NOTE: Use command ':verbose imap <tab>' to make sure tab is not mapped by
-" other plugin before putting this into your config
 inoremap <silent><expr> <TAB>
       \ coc#pum#visible() ? coc#pum#next(1) :
       \ CheckBackspace() ? "\<Tab>" :
