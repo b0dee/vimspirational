@@ -460,12 +460,22 @@ nmap <silent> <leader>e :Fern . -drawer -toggle -keep -reveal=%<CR>
 
 " Use <ctrl> + 't' to create a new tab
 noremap <silent><C-T> :tabedit<CR>
-noremap! <silent><C-T> :tabedit<CR>
+noremap! <silent><C-T> <Esc>:tabedit<CR>
+tnoremap <silent><C-T> <C-W>:tabedit<CR>
 " Navigate tabs with ctrl+w ctrl+h/l
 noremap <silent><C-H> :tabprevious<CR>
 noremap <silent><C-L> :tabnext<CR>
-noremap! <silent><C-H> :tabprevious<CR>
-noremap! <silent><C-L> :tabnext<CR>
+noremap! <silent><C-H> <Esc>:tabprevious<CR>
+noremap! <silent><C-L> <Esc>:tabnext<CR>
+tnoremap <silent><C-H> <C-W>:tabprevious<CR>
+tnoremap <silent><C-L> <C-W>:tabnext<CR>
+" Move tabs left and right
+noremap <silent><C-,> :tabmove-<CR>
+noremap <silent><C-.> :tabmove+<CR>
+noremap! <silent><C-,> <Esc>:tabmove-<CR>
+noremap! <silent><C-.> <Esc>:tabmove+<CR>
+tnoremap <silent><C-,> :tabmove-<CR>
+tnoremap <silent><C-.> :tabmove+<CR>
 
 " Make ctrl + backspace work like normal in insert and command mode
 noremap! <C-BS> <C-W>
